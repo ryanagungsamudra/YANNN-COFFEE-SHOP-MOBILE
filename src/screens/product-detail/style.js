@@ -3,6 +3,8 @@ import { Dimensions, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     hero: {
         marginTop: 50,
+        width: 300,
+        height: 300
     },
     title: {
         fontSize: 28,
