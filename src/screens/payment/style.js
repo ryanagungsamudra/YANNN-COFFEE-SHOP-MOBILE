@@ -1,44 +1,37 @@
 import { Dimensions, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    cardWrap: {
-        display: 'flex',
-        width: Dimensions.get('window').width / 1.5,
-        padding: 15,
-        alignItems: 'center'
-    },
-    card: {
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        elevation: 10,
-        height: 102,
-        width: 315,
-        borderRadius: 30,
-        marginTop: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        position: 'relative'
-    },
     hero: {
-        width: 95,
-        height: 95,
-        position: 'absolute',
-        top: 15,
-        left: 0
+        width: 329,
+        height: 202,
+        borderRadius: 20,
+        marginLeft: -5,
+        marginTop: 20
     },
     title: {
         fontWeight: '700',
-        fontSize: 17
+        fontSize: 25,
+        marginTop: 20
+    },
+    product: {
+        fontWeight: '700',
+        fontSize: 16,
+        color: '#000000'
+    },
+    size: {
+        fontWeight: '400',
+        fontSize: 14,
+        color: '#000000'
     },
     price: {
-        fontWeight: '400',
-        fontSize: 15,
-        color: '#895537'
+        fontWeight: '700',
+        fontSize: 16,
+        color: '#000000',
     },
     confirmAndCheckout: {
-        marginTop: 300,
-        paddingLeft: 65,
-        paddingRight: 65,
+        marginTop: 25,
+        paddingLeft: 122,
+        paddingRight: 122,
         padding: 20,
         fontSize: 17,
         fontWeight: "700"

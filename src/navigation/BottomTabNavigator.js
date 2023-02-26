@@ -24,7 +24,7 @@ export default function BottomTabNavigator() {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarLabel: 'Profile',
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="account" color={color} size={size} />
                     ),

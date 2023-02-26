@@ -26,8 +26,8 @@ function App() {
         <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
         <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
         <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
-        <Stack.Screen name="Payment" component={Payment} options={{ title: 'Payment' }} />
-        <Stack.Screen name="History" component={History} options={{ title: 'History' }} />
+        <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+        <Stack.Screen name="History" component={History} options={{ headerTitle: '' }} />
       </Stack.Navigator>
     </NavigationContainer>
   )
