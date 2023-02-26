@@ -8,35 +8,55 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     card: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         backgroundColor: '#fff',
         elevation: 10,
-        height: 102,
+        height: 156,
         width: 315,
         borderRadius: 30,
         marginTop: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        paddingLeft: 30,
+        paddingRight: 50,
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
         position: 'relative'
     },
-    hero: {
-        width: 95,
-        height: 95,
-        position: 'absolute',
-        top: 15,
-        left: 0
-    },
     title: {
+        fontWeight: '900',
+        fontSize: 34,
+        marginTop: 30
+    },
+    address: {
         fontWeight: '700',
-        fontSize: 17
+        fontSize: 17,
+        color: '#000000',
+    },
+    change: {
+        fontSize: 15,
+        fontWeight: "400",
+        color: '#6A4029',
+        marginLeft: 135
+    },
+    radioButtons: {
+        marginLeft: -20,
+        alignItems: "flex-start",
+    },
+    delivery: {
+        fontWeight: '700',
+        fontSize: 17,
+        color: '#000000',
+    },
+    total: {
+        fontSize: 17,
+        fontWeight: '400'
     },
     price: {
-        fontWeight: '400',
-        fontSize: 15,
-        color: '#895537'
+        fontSize: 22,
+        fontWeight: '700',
+        marginLeft: 140
     },
     confirmAndCheckout: {
-        marginTop: 300,
+        marginTop: 80,
         paddingLeft: 65,
         paddingRight: 65,
         padding: 20,

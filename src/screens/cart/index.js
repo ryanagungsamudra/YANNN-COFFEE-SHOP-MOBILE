@@ -4,7 +4,7 @@ import styles from './style'
 import SelectDropdown from 'react-native-select-dropdown'
 
 export default function Cart({ navigation }) {
-    const countries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <View style={styles.cardWrap}>
@@ -17,7 +17,7 @@ export default function Cart({ navigation }) {
                                 <Text style={styles.price}>IDR 34.000</Text>
                             </View>
                             <SelectDropdown
-                                data={countries}
+                                data={quantity}
                                 onSelect={(selectedItem, index) => {
                                     // console.log(selectedItem, index)
                                 }}
@@ -40,10 +40,10 @@ export default function Cart({ navigation }) {
                 })}
             </View>
 
-            <Pressable onPress={() => {
-                navigation.navigate('DeliveryMethod')
-            }} >
-                <Text style={[global.btn_primary, styles.confirmAndCheckout]}>Confirm and Checkout</Text>
+            <Pressable>
+                <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
+                    navigation.navigate('DeliveryMethod')
+                }} >Confirm and Checkout</Text>
             </Pressable>
         </View>
     )
