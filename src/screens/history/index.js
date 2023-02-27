@@ -19,7 +19,7 @@ export default function History({ navigation }) {
                 )
             })}
             <Pressable>
-                <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
+                <Text style={[global.btn_primary, styles.backToHome]} onPress={() => {
                     navigation.navigate('Home')
                 }} >Back to home</Text>
             </Pressable>

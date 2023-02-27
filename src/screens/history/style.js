@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: '#6A4029'
     },
-    confirmAndCheckout: {
+    backToHome: {
         marginTop: 30,
         paddingLeft: 103,
         paddingRight: 103,
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "700",
         backgroundColor: '#FFBA33',
+        borderColor: '#FFBA33',
         color: '#6A4029'
     }
 });

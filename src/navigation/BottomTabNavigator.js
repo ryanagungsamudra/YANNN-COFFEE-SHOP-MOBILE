@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Home from '../screens/home'
 import Profile from '../screens/profile';
+import DrawerNavigator from './DrawerNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,7 +12,7 @@ export default function BottomTabNavigator() {
         <Tab.Navigator>
             <Tab.Screen
                 name="HomeTab"
-                component={Home}
+                component={DrawerNavigator}
                 options={{
                     headerShown: false,
                     tabBarLabel: 'Home',

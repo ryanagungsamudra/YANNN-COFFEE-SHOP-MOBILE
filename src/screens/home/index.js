@@ -10,7 +10,7 @@ export default function Home({ navigation }) {
             <TextInput style={styles.searchInput} placeholder="Search" />
             {/* Product Card Start */}
             <View>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <ScrollView style={{ marginTop: 30, marginBottom: 20 }} horizontal showsHorizontalScrollIndicator={false}>
                     <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]}>Favorite & Promo</Text>
                     <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]}>Coffee</Text>
                     <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]}>Non Coffee</Text>
