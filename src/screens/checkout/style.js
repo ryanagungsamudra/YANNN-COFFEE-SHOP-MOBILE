@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 22,
         fontWeight: '700',
-        marginLeft: 140
+        marginLeft: 140,
     },
     confirmAndCheckout: {
-        marginTop: 80,
+        marginTop: 110,
         paddingLeft: 65,
         paddingRight: 65,
         padding: 20,

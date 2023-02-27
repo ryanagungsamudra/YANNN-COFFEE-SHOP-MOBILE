@@ -31,8 +31,8 @@ export default function Cart({ navigation }) {
                                     // if data array is an array of objects then return item.property to represent item in dropdown
                                     return item
                                 }}
-                                dropdownStyle={{ borderRadius: 20 }}
-                                buttonStyle={{ width: 60, backgroundColor: '#fff', borderWidth: 0.2, borderRadius: 10, marginHorizontal: 10 }}
+                                dropdownStyle={{ borderRadius: 10, marginTop: -25 }}
+                                buttonStyle={{ width: 60, backgroundColor: '#fff', borderWidth: 0.15, borderRadius: 5, marginHorizontal: 10 }}
                                 defaultValue={1}
                             />
                         </View>

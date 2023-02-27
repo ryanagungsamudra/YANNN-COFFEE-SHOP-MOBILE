@@ -5,12 +5,24 @@ import styles from './style'
 export default function History({ navigation }) {
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1 }]}>
-            <Text>History</Text>
-            {/* <Pressable onPress={() => {
-                navigation.navigate('History')
-            }} >
-                <Text style={[global.btn_primary, styles.confirmAndCheckout]}>Pay Now</Text>
-            </Pressable> */}
+            <Text style={styles.header}>Order History</Text>
+            {[1, 2, 3, 4, 5].map(() => {
+                return (
+                    <View style={styles.card}>
+                        <Image source={require('../../images/coldBrew.png')} style={styles.hero} />
+                        <View style={{ marginRight: 35 }}>
+                            <Text style={styles.title}>Veggie tomato mix</Text>
+                            <Text style={styles.price}>IDR 34.000</Text>
+                            <Text style={styles.status}>Waiting for delivery [will arrive at 3 PM]</Text>
+                        </View>
+                    </View>
+                )
+            })}
+            <Pressable>
+                <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
+                    navigation.navigate('Home')
+                }} >Back to home</Text>
+            </Pressable>
         </View>
     )
 }

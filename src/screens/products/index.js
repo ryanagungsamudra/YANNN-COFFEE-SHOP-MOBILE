@@ -16,7 +16,7 @@ export default function Products({ navigation }) {
                             <Image source={require('../../images/p1.png')} style={{
                                 width: '60%',
                                 position: 'absolute',
-                                marginTop: -15,
+                                marginTop: -10,
                                 zIndex: 2,
                                 resizeMode: 'contain'
                             }} />

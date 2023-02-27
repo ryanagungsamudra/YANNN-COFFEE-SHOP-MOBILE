@@ -10,9 +10,11 @@ import Products from './src/screens/products';
 import ProductDetails from './src/screens/product-detail';
 import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 import Cart from './src/screens/cart';
-import DeliveryMethod from './src/screens/delivery-method';
+import DeliveryMethod from './src/screens/checkout';
 import Payment from './src/screens/payment';
 import History from './src/screens/history';
+import EditProfile from './src/screens/profile-edit';
+import Auth from './src/screens/auth';
 // Screens end
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +23,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
         <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
@@ -28,6 +31,7 @@ function App() {
         <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
         <Stack.Screen name="History" component={History} options={{ headerTitle: '' }} />
+        <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

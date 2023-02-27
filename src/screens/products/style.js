@@ -14,22 +14,21 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: '#fff',
-        elevation: 10,
-        height: 180,
-        width: '100%',
-        borderRadius: 30,
+        height: 190,
+        width: '95%',
+        borderRadius: 20,
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
     productTitle: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: '900',
         color: '#6A4029'
     },
     productPrice: {
-        fontSize: 17,
+        fontSize: 15,
         fontWeight: '700',
-        marginBottom: 5
+        paddingBottom: 10
     }
 });
 

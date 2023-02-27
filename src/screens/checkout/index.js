@@ -40,7 +40,7 @@ export default function DeliveryMethod({ navigation }) {
             </View>
 
             <Text style={[styles.delivery, { marginTop: 30 }]}>Delivery methods</Text>
-            <View style={[styles.card]}>
+            <View style={[styles.card, { height: 135 }]}>
                 <RadioGroup
                     radioButtons={radioButtons}
                     onPress={onPressRadioButton}
@@ -51,7 +51,7 @@ export default function DeliveryMethod({ navigation }) {
                 <Text style={{ fontSize: 17, fontWeight: '400' }}>Dine in</Text> */}
             </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 30 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 35 }}>
                 <Text style={styles.total}>Total</Text>
                 <Text style={styles.price}>IDR 150.000</Text>
             </View>

@@ -10,50 +10,41 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        elevation: 10,
-        height: 102,
+        height: 60,
         width: 315,
-        borderRadius: 30,
+        borderRadius: 20,
         marginTop: 15,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         position: 'relative'
     },
     hero: {
-        width: 95,
-        height: 95,
+        width: 130,
+        height: 130,
+    },
+    edit: {
+        width: 35,
+        height: 35,
         position: 'absolute',
-        top: 15,
-        left: 10
+        bottom: 2,
+        right: 2
     },
     header: {
         fontWeight: '900',
         fontSize: 34,
-        marginTop: 15
+        marginTop: 60
     },
     title: {
         fontSize: 17,
         fontWeight: '700'
     },
-    price: {
-        fontWeight: '400',
-        fontSize: 15,
-        color: '#895537'
-    },
-    status: {
-        fontWeight: '400',
-        fontSize: 10,
-        color: '#6A4029'
-    },
-    confirmAndCheckout: {
+    saveChange: {
         marginTop: 30,
         paddingLeft: 103,
         paddingRight: 103,
         padding: 20,
         fontSize: 17,
         fontWeight: "700",
-        backgroundColor: '#FFBA33',
-        color: '#6A4029'
     }
 });
 
