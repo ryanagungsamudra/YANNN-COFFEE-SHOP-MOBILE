@@ -6,7 +6,6 @@ import { API_URL } from '@env'
 import { getProducts } from '../../utils/https/products';
 import { useNavigation } from '@react-navigation/native';
 
-
 export default function Home() {
     const navigation = useNavigation()
     const [dataProducts, setDataProducts] = useState([])

@@ -25,7 +25,7 @@ export default function ProductDetails({ route }) {
             <Text style={styles.description}>Description</Text>
             <Text style={styles.descriptionText}>Cold brewing is a method of brewing that combines ground coffee and cool water and uses time instead of heat to extract the flavor. It is brewed in small batches and steeped for as long as 48 hours.</Text>
             <Pressable onPress={() => {
-                navigation.navigate('Cart')
+                navigation.navigate('Cart', { id, title, price, category, productImage })
             }} >
                 <Text style={[global.btn_primary, styles.addToCart]}>Add to cart</Text>
             </Pressable>

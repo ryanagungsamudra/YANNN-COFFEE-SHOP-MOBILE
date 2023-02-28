@@ -3,14 +3,14 @@ import { Dimensions, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     cardWrap: {
         display: 'flex',
-        width: Dimensions.get('window').width / 1.5,
+        width: Dimensions.get('window').width / 1,
         padding: 15,
         alignItems: 'center'
     },
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        elevation: 10,
+        // elevation: 10,
         height: 102,
         width: 315,
         borderRadius: 30,
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         color: '#895537'
     },
     confirmAndCheckout: {
-        marginTop: 300,
         paddingLeft: 65,
         paddingRight: 65,
         padding: 20,

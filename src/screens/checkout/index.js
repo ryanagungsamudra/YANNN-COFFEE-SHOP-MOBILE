@@ -3,8 +3,12 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import global from '../../styles/global'
 import styles from './style'
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-export default function DeliveryMethod({ navigation }) {
+export default function DeliveryMethod({ route }) {
+    const navigation = useNavigation()
+    const { id, title, price, category, productImage, totalPrice } = route.params
+
     const [radioButtons, setRadioButtons] = useState([
         {
             id: '1',
@@ -53,7 +57,7 @@ export default function DeliveryMethod({ navigation }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 35 }}>
                 <Text style={styles.total}>Total</Text>
-                <Text style={styles.price}>IDR 150.000</Text>
+                <Text style={styles.price}>{`IDR ${totalPrice}`}</Text>
             </View>
 
             <Pressable>
