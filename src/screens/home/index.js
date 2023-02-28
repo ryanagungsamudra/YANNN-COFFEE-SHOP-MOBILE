@@ -33,10 +33,15 @@ export default function Home() {
         <View style={global.bg}>
             <Text style={styles.title}>A good coffee is {'\n'}a good day</Text>
 
-            <TextInput
-                style={styles.searchInput}
-                placeholder="Search anything you want"
-                onChangeText={(search) => setKeyword(search)} />
+            <View style={{ position: 'relative' }}>
+                <Image
+                    source={require('../../images/search.png')}
+                    style={styles.searchIcon} />
+                <TextInput
+                    style={styles.searchInput}
+                    placeholder="Search anything you want"
+                    onChangeText={(search) => setKeyword(search)} />
+            </View>
             {/* Product Card Start */}
             <View>
                 <ScrollView style={{ marginTop: 30, marginBottom: 20 }} horizontal showsHorizontalScrollIndicator={false}>

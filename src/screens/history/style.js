@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        elevation: 10,
+        // elevation: 10,
         height: 102,
         width: 315,
         borderRadius: 30,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         color: '#6A4029'
     },
     backToHome: {
-        marginTop: 30,
+        // marginTop: 30,
         paddingLeft: 103,
         paddingRight: 103,
         padding: 20,
