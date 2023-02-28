@@ -16,14 +16,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: 190,
         width: '95%',
-        borderRadius: 20,
+        borderRadius: 40,
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
     productTitle: {
         fontSize: 20,
         fontWeight: '900',
-        color: '#6A4029'
+        color: '#6A4029',
+        textAlign: 'center'
     },
     productPrice: {
         fontSize: 15,

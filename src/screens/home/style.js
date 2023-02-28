@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         elevation: 10,
         height: 250,
         width: '95%',
-        borderRadius: 30,
+        borderRadius: 60,
         marginTop: 15,
         justifyContent: 'flex-end',
         alignItems: 'center'
@@ -50,11 +50,13 @@ const styles = StyleSheet.create({
     productTitle: {
         fontSize: 22,
         fontWeight: '900',
-        color: '#6A4029'
+        color: '#6A4029',
+        textAlign: "center"
     },
     productPrice: {
         fontSize: 17,
-        fontWeight: '700'
+        fontWeight: '700',
+        textAlign: "center"
     }
 });
 
