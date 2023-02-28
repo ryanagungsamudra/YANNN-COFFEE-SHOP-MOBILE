@@ -4,8 +4,11 @@ import styles from './style'
 import { useEffect, useState } from 'react';
 import { API_URL } from '@env'
 import { getProducts } from '../../utils/https/products';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Home({ navigation }) {
+
+export default function Home() {
+    const navigation = useNavigation()
     const [dataProducts, setDataProducts] = useState([])
     const [keyword, setKeyword] = useState('')
     const [filter, setFilter] = useState('')
@@ -51,9 +54,18 @@ export default function Home({ navigation }) {
                     data={dataProducts}
                     renderItem={({ item, index }) => {
                         return (
-                            <Pressable key={index} style={styles.cardWrap} onPress={() => {
-                                navigation.navigate('ProductDetail')
-                            }}>
+                            <Pressable
+                                key={index}
+                                style={styles.cardWrap}
+                                onPress={() => {
+                                    navigation.navigate('ProductDetail', item)
+                                }}
+                                android_ripple={{
+                                    color: "#6A4029",
+                                    foreground: true,
+                                    borderless: true,
+                                    radius: 60
+                                }}>
                                 <Image
                                     source={{
                                         uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
