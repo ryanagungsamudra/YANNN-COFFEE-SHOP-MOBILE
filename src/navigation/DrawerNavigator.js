@@ -14,6 +14,7 @@ export default function DrawerNavigator() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />} initialRouteName="Home">
             <Drawer.Screen name="Home" component={Home} options={{
+                headerShown: false,
                 headerTitle: '',
                 drawerStyle: {
                     borderTopRightRadius: 30,

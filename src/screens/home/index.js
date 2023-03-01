@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '@env'
 import { getProducts } from '../../utils/https/products';
 import { useNavigation } from '@react-navigation/native';
+import Navbar from '../../components/Navbar';
 
 export default function Home() {
     const navigation = useNavigation()
@@ -30,7 +31,9 @@ export default function Home() {
     }, [refetch, keyword, filter])
 
     return (
-        <View style={global.bg}>
+        <View style={global.bg} >
+            <Navbar />
+
             <Text style={styles.title}>A good coffee is {'\n'}a good day</Text>
 
             <View style={{ position: 'relative' }}>

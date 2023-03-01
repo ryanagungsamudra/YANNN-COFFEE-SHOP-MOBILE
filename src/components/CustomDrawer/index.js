@@ -32,11 +32,11 @@ export default function CustomDrawer(props) {
                 </Pressable>
                 <View style={styles.lineBottom} />
 
-                <Pressable style={{ flexDirection: 'row', paddingLeft: 30 }} onPress={() => navigation.navigate('Home')}>
+                {/* <Pressable style={{ flexDirection: 'row', paddingLeft: 30 }} onPress={() => navigation.navigate('Home')}>
                     <Image source={require('../../images/orders.png')} />
                     <Text style={styles.itemList}>Orders</Text>
                 </Pressable>
-                <View style={styles.lineBottom} />
+                <View style={styles.lineBottom} /> */}
 
                 <Pressable style={{ flexDirection: 'row', paddingLeft: 30 }} onPress={() => navigation.navigate('Products')}>
                     <Image source={require('../../images/allMenu.png')} />
@@ -56,7 +56,7 @@ export default function CustomDrawer(props) {
                 </Pressable>
                 <View style={styles.lineBottom} />
 
-                <Pressable style={{ flexDirection: 'row', paddingLeft: 20, paddingTop: 55 }} onPress={() => navigation.navigate('Home')}>
+                <Pressable style={{ flexDirection: 'row', paddingLeft: 20, paddingTop: 120 }} onPress={() => navigation.navigate('Home')}>
                     <Text style={styles.itemList}>Sign Out</Text>
                     <Image source={require('../../images/brown_right_arrow.png')} style={{ marginTop: 5, marginLeft: 8 }} />
                 </Pressable>

@@ -15,6 +15,7 @@ import Payment from './src/screens/payment';
 import History from './src/screens/history';
 import EditProfile from './src/screens/profile-edit';
 import Auth from './src/screens/auth';
+import Chat from './src/screens/communication/chat';
 // Screens end
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ function App() {
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
         <Stack.Screen name="History" component={History} options={{ headerTitle: '' }} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
+        <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

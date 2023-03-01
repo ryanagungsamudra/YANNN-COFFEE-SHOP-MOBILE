@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F2F2F2',
         borderTopRightRadius: 30,
-        borderBottomRightRadius: 30,
     },
     containerHero: {
         backgroundColor: '#6A4029',
