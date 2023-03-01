@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 15,
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingRight: 42,
+        paddingRight: 46,
         paddingLeft: 46,
         elevation: 10
     },
     hamburger: {
-        marginTop: 48,
+        marginTop: 49.5,
         width: 20,
-        height: 17
+        height: 16
     },
     cart: {
         marginTop: 45,

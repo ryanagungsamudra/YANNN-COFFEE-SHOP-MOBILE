@@ -15,7 +15,7 @@ export default function Home() {
     const [refetch, setRefetch] = useState(false)
 
     const url = (keyword) => {
-        const limitPage = '7'
+        const limitPage = '10'
         if (keyword != "") {
             return getProducts(`search=${keyword}&limit=${limitPage}&sortBy=desc`)
         }
@@ -54,7 +54,7 @@ export default function Home() {
                     <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('foods')}>Foods</Text>
                     <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15, marginRight: 40 }]} onPress={() => setFilter('add-on')}>Add-on</Text>
                 </ScrollView>
-                <Text style={styles.seeMore} onPress={() => { navigation.navigate('Products') }}>See more</Text>
+                <Text style={styles.seeMore} onPress={() => { navigation.navigate('Products') }}>View all</Text>
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}

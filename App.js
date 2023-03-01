@@ -31,7 +31,7 @@ function App() {
         <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
         <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
-        <Stack.Screen name="History" component={History} options={{ headerTitle: '' }} />
+        <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
         <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
       </Stack.Navigator>

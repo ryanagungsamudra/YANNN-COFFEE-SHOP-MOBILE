@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function DeliveryMethod({ route }) {
     const navigation = useNavigation()
-    const { id, title, price, category, productImage, totalPrice } = route.params
+    const { id, title, price, category, productImage, productQuantity, totalPrice } = route.params
 
     const [radioButtons, setRadioButtons] = useState([
         {
@@ -62,7 +62,7 @@ export default function DeliveryMethod({ route }) {
 
             <Pressable>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
-                    navigation.navigate('Payment')
+                    navigation.navigate('Payment', { id, title, price, category, productImage, productQuantity, totalPrice })
                 }} >Confirm and Checkout</Text>
             </Pressable>
         </View>

@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function History({ navigation }) {
     const [dataHistory, setDataHistory] = useState([0])
     return (
-        <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1 }]}>
+        <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1, marginTop: 40 }]}>
             <Text style={styles.header}>Order History</Text>
             {/* {[1, 2, 3, 4, 5].map(() => {
                 return (

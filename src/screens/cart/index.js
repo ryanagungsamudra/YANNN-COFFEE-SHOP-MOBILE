@@ -12,8 +12,8 @@ export default function Cart({ route }) {
     const [dataCart, setDataCart] = useState([0])
 
     const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    const [dataPrice, setDataPrice] = useState()
-    const totalPrice = (parseInt(price) * (dataPrice || 1)) * 1000
+    const [productQuantity, setProductQuantity] = useState(1)
+    const totalPrice = (parseInt(price) * (productQuantity || 1)) * 1000
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <View style={styles.cardWrap}>
@@ -36,7 +36,7 @@ export default function Cart({ route }) {
                                     data={quantity}
                                     onSelect={(selectedItem, index) => {
                                         // console.log(selectedItem, index)
-                                        setDataPrice(selectedItem)
+                                        setProductQuantity(selectedItem)
                                     }}
                                     buttonTextAfterSelection={(selectedItem, index) => {
                                         // text represented after item is selected
@@ -60,7 +60,7 @@ export default function Cart({ route }) {
 
             <Pressable style={{ position: 'absolute', bottom: 40, right: 45 }}>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
-                    navigation.navigate('DeliveryMethod', { id, title, price, category, productImage, totalPrice })
+                    navigation.navigate('DeliveryMethod', { id, title, price, category, productImage, productQuantity, totalPrice })
                 }} >Confirm and Checkout</Text>
             </Pressable>
         </View>
