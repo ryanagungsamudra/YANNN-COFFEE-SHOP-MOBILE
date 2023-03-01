@@ -1,11 +1,26 @@
-import React from 'react'
-import { Image, Text, View, Pressable } from 'react-native'
+import { React, useEffect, useState } from 'react'
+import { Image, Text, View, Pressable, ToastAndroid } from 'react-native'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
 import styles from './style'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getUserData } from '../../utils/https/auth'
 
 export default function CustomDrawer(props) {
     const navigation = useNavigation()
+    const [userData, setUserData] = useState([])
+    useEffect(() => {
+        getUserData(setUserData)
+    }, [])
+
+    const handleLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('@userData')
+            ToastAndroid.show('Logged out!', ToastAndroid.SHORT)
+        } catch (e) {
+            alert(e)
+        }
+    }
     return (
         // <DrawerContentScrollView {...props}>
         //     <DrawerItemList {...props} />
@@ -56,7 +71,8 @@ export default function CustomDrawer(props) {
                 </Pressable>
                 <View style={styles.lineBottom} />
 
-                <Pressable style={{ flexDirection: 'row', paddingLeft: 20, paddingTop: 120 }} onPress={() => navigation.navigate('Home')}>
+                <Pressable style={{ flexDirection: 'row', paddingLeft: 20, paddingTop: 120 }}
+                    onPress={handleLogout}>
                     <Text style={styles.itemList}>Sign Out</Text>
                     <Image source={require('../../images/brown_right_arrow.png')} style={{ marginTop: 5, marginLeft: 8 }} />
                 </Pressable>

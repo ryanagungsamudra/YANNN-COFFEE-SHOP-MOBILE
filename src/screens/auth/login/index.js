@@ -1,15 +1,33 @@
-import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, ImageBackground, SafeAreaView } from 'react-native';
+import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, ImageBackground, SafeAreaView, ToastAndroid } from 'react-native';
 import global from '../../../styles/global'
 import styles from './style'
 import { useRef, useState } from 'react';
 import { FormItem } from 'react-native-form-component';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { postLogin } from '../../../utils/https/auth';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Login({ navigation }) {
-    const [email, onChangeEmail] = useState('');
-    const [password, onChangePassword] = useState('');
+export default function Login({ }) {
+    const navigation = useNavigation()
+    const [formLogin, setFormLogin] = useState({
+        email: '',
+        password: '',
+    })
+    const { emailInput, passwordInput } = useRef();
 
-    const emailInput = useRef();
-    const passwordInput = useRef();
+    const handleLogin = () => {
+        postLogin(formLogin)
+            .then((res) => {
+                AsyncStorage.setItem('@userData', JSON.stringify(res.data.data))
+                ToastAndroid.show('Successfully login.', ToastAndroid.SHORT)
+                // setTimeout(() => {
+                //     navigation.navigate('Welcome')
+                // }, 2500);
+            }).catch((err) => {
+                ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT)
+                console.log(err.response)
+            })
+    }
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground source={require('../../../images/login_bg.png')} resizeMode="cover" style={styles.image} />
@@ -20,20 +38,23 @@ export default function Login({ navigation }) {
                     style={{ borderRadius: 10, opacity: 0.85 }}
                     placeholder='Enter your email adress'
                     isRequired
-                    value={email}
-                    onChangeText={(email) => onChangeEmail(email)}
+                    keyboardType='email-address'
+                    onChangeText={(text) => setFormLogin({ ...formLogin, email: text })}
                     asterik
+                    value={formLogin.email}
                     ref={emailInput}
+                    autoCapitalize='none'
                 />
                 <FormItem
                     style={{ borderRadius: 10, opacity: 0.85 }}
                     placeholder='Enter your password'
                     isRequired
-                    value={password}
-                    onChangeText={(password) => onChangePassword(password)}
+                    onChangeText={(text) => setFormLogin({ ...formLogin, password: text })}
                     asterik
+                    value={formLogin.password}
                     ref={passwordInput}
                     secureTextEntry={true}
+                    autoCapitalize='none'
                 />
                 <Text
                     style={{ color: '#fff', fontWeight: '700', textDecorationLine: "underline" }}
@@ -43,9 +64,7 @@ export default function Login({ navigation }) {
                 </Text>
             </View>
 
-            <Pressable onPress={() => {
-                navigation.navigate('Home')
-            }} >
+            <Pressable onPress={handleLogin} >
                 <Text style={[global.btn_primary, styles.login]}>Login</Text>
             </Pressable>
             <Pressable>

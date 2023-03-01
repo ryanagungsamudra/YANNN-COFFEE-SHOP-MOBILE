@@ -1,7 +1,9 @@
-import * as React from 'react';
+// import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Screens start
 import Home from './src/screens/home'
@@ -21,19 +23,56 @@ import Chat from './src/screens/communication/chat';
 const Stack = createNativeStackNavigator();
 
 function App() {
+
+  const [isLoggin, setIsLoggin] = useState({
+    value: false, data: {}
+  })
+  const getDataAuth = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@userData')
+      if (value !== null) {
+        setIsLoggin({
+          value: true,
+          data: JSON.parse(value)
+        })
+      } else {
+        setIsLoggin({
+          value: false,
+          data: {}
+        })
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getDataAuth()
+  }, [])
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
-        <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
-        <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
-        <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
-        <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
-        <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
-        <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
-        <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
+        {isLoggin.value ?
+          (
+            <>
+              <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
+              <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
+              <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
+              <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
+              <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
+              <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+              <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
+              <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
+              <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
+            </>
+          )
+          :
+          (
+            <>
+              <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
+            </>
+          )
+        }
       </Stack.Navigator>
     </NavigationContainer>
   )

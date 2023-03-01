@@ -3,9 +3,10 @@ import global from '../../styles/global'
 import styles from './style'
 import { useEffect, useState } from 'react';
 import { API_URL } from '@env'
-import { getProducts } from '../../utils/https/products';
 import { useNavigation } from '@react-navigation/native';
 import Navbar from '../../components/Navbar';
+import { getProducts } from '../../utils/https/products';
+import { getUserData } from '../../utils/https/auth';
 
 export default function Home() {
     const navigation = useNavigation()
@@ -13,6 +14,8 @@ export default function Home() {
     const [keyword, setKeyword] = useState('')
     const [filter, setFilter] = useState('')
     const [refetch, setRefetch] = useState(false)
+
+    const [userData, setUserData] = useState([])
 
     const url = (keyword) => {
         const limitPage = '10'
@@ -23,11 +26,17 @@ export default function Home() {
             return getProducts(`category=${filter}&limit=${limitPage}&sortBy=desc`)
         }
     }
-    useEffect(() => {
+
+    const loadProducts = () => {
         // getProducts(`search=${keyword}&limit=5&sortBy=desc&category=${filter}`)
         url(keyword)
             .then((res) => setDataProducts(res.data.data))
             .catch((err) => console.log(err.message))
+    }
+
+    useEffect(() => {
+        loadProducts()
+        getUserData(setUserData)
     }, [refetch, keyword, filter])
 
     return (
