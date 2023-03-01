@@ -20,6 +20,7 @@ export default function BottomTabNavigator() {
                         <MaterialCommunityIcons name="home" color={color} size={size} />
                     ),
                     tabBarActiveTintColor: 'brown',
+                    tabBarIconStyle: { marginTop: 10 }
                 }} />
             <Tab.Screen
                 name="Profile"
@@ -30,6 +31,7 @@ export default function BottomTabNavigator() {
                         <MaterialCommunityIcons name="account" color={color} size={size} />
                     ),
                     tabBarActiveTintColor: 'brown',
+                    tabBarIconStyle: { marginTop: 10 }
                 }}
             />
         </Tab.Navigator>

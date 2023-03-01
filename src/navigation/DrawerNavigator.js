@@ -14,17 +14,22 @@ export default function DrawerNavigator() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />} initialRouteName="Home">
             <Drawer.Screen name="Home" component={Home} options={{
-                headerTitle: ''
+                headerTitle: '',
+                drawerStyle: {
+                    borderTopRightRadius: 30,
+                },
             }} />
-            <Drawer.Screen name="EditProfile" component={EditProfile} options={{
-                headerTitle: ''
-            }} />
+            {/* <Drawer.Screen name="EditProfile" component={EditProfile} options={{
+                headerTitle: '',
+                title: 'Edit Profile',
+            }} /> */}
             {/* <Drawer.Screen name="Cart" component={Cart} options={{
                 headerTitle: ''
             }} /> */}
-            <Drawer.Screen name="Products" component={Products} options={{
-                headerTitle: ''
-            }} />
+            {/* <Drawer.Screen name="Products" component={Products} options={{
+                headerTitle: '',
+                title: 'All Menu'
+            }} /> */}
         </Drawer.Navigator>
     );
 }
