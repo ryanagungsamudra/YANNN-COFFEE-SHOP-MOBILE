@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserData } from '../../utils/https/auth'
 
-export default function CustomDrawer(props) {
+export default function CustomDrawer() {
     const navigation = useNavigation()
     const [userData, setUserData] = useState([])
     useEffect(() => {
@@ -17,14 +17,14 @@ export default function CustomDrawer(props) {
         try {
             await AsyncStorage.removeItem('@userData')
             ToastAndroid.show('Logged out!', ToastAndroid.SHORT)
+            setTimeout(() => {
+                navigation.navigate("Auth", { screen: "Welcome" })
+            }, 500);
         } catch (e) {
             alert(e)
         }
     }
     return (
-        // <DrawerContentScrollView {...props}>
-        //     <DrawerItemList {...props} />
-        // </DrawerContentScrollView>
         <DrawerContentScrollView style={styles.container}>
             {/* Bio start */}
             <View style={styles.containerHero}>
@@ -33,7 +33,7 @@ export default function CustomDrawer(props) {
                 </View>
                 <View style={{ flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: -10 }}>
                     <Text style={styles.name}>Ryan Agung Samudra</Text>
-                    <Text style={styles.email}>ryansamudra67@gmail.com</Text>
+                    <Text style={styles.email}>ryanagungsamudra67@gmail.com</Text>
                     <Text style={styles.phone}>082284798890</Text>
                 </View>
             </View >
@@ -46,12 +46,6 @@ export default function CustomDrawer(props) {
                     <Text style={styles.itemList}>Edit Profile</Text>
                 </Pressable>
                 <View style={styles.lineBottom} />
-
-                {/* <Pressable style={{ flexDirection: 'row', paddingLeft: 30 }} onPress={() => navigation.navigate('Home')}>
-                    <Image source={require('../../images/orders.png')} />
-                    <Text style={styles.itemList}>Orders</Text>
-                </Pressable>
-                <View style={styles.lineBottom} /> */}
 
                 <Pressable style={{ flexDirection: 'row', paddingLeft: 30 }} onPress={() => navigation.navigate('Products')}>
                     <Image source={require('../../images/allMenu.png')} />

@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postLogin } from '../../../utils/https/auth';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Login({ }) {
+export default function Login() {
     const navigation = useNavigation()
     const [formLogin, setFormLogin] = useState({
         email: '',
@@ -20,9 +20,9 @@ export default function Login({ }) {
             .then((res) => {
                 AsyncStorage.setItem('@userData', JSON.stringify(res.data.data))
                 ToastAndroid.show('Successfully login.', ToastAndroid.SHORT)
-                // setTimeout(() => {
-                //     navigation.navigate('Welcome')
-                // }, 2500);
+                setTimeout(() => {
+                    navigation.navigate("Home", res.data.data.user.id)
+                }, 500);
             }).catch((err) => {
                 ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT)
                 console.log(err.response)

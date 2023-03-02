@@ -8,7 +8,7 @@ import Chat from '../screens/communication/chat';
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator({ isLoggin, setIsLoggin }) {
     return (
         <Tab.Navigator>
             <Tab.Screen

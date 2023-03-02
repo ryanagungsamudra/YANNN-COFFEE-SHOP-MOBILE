@@ -8,33 +8,24 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Signup({ }) {
     const navigation = useNavigation()
-    // const [email, onChangeEmail] = useState('');
-    // const [password, onChangePassword] = useState('');
-    // const [phone, onChangePhone] = useState('');
-
-    // const emailInput = useRef();
-    // const passwordInput = useRef();
-    // const phoneInput = useRef();
-
     const [formSignup, setFormSignup] = useState({
-        name: '',
         email: '',
         password: '',
         mobile_number: '',
+        name: '',
     })
-    const { name, emailInput, passwordInput, phoneInput } = useRef();
+    const { nameInput, emailInput, passwordInput, phoneInput } = useRef();
 
 
     const handleSignup = () => {
         postRegist(formSignup)
             .then((res) => {
-                ToastAndroid.show('Successfully login.', ToastAndroid.SHORT)
+                ToastAndroid.show('Successfully Signup.', ToastAndroid.SHORT)
                 setTimeout(() => {
                     navigation.navigate('Login')
                 }, 2500);
             }).catch((err) => {
-                ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT)
-                console.log(err.response)
+                ToastAndroid.show(err.response.data.errors, ToastAndroid.SHORT)
             })
     }
     return (
@@ -51,7 +42,7 @@ export default function Signup({ }) {
                     value={formSignup.name}
                     onChangeText={(text) => setFormSignup({ ...formSignup, name: text })}
                     asterik
-                    ref={name}
+                    ref={nameInput}
                 />
                 <FormItem
                     style={{ borderRadius: 10, opacity: 0.85 }}

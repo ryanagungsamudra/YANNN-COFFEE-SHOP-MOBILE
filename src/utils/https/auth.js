@@ -7,7 +7,20 @@ export const postLogin = async (body) => {
 }
 
 export const postRegist = async (body) => {
-    return await axios.post(`${API_URL}/api/auth/register`, body)
+    // return await axios.post(`${API_URL}/api/auth/register`, body)
+    return await axios({
+        url: `${API_URL}/api/auth/register`,
+        method: "POST",
+        data: body,
+    })
+}
+
+export const getUserById = async (id) => {
+    return await axios({
+        url: `${API_URL}/api/users/${id}`,
+        method: "GET",
+        data: body,
+    })
 }
 
 export const getUserData = async (setState) => {

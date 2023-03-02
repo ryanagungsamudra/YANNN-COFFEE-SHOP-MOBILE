@@ -6,8 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Screens start
-import Home from './src/screens/home'
-import Profile from './src/screens/profile';
+// import Home from './src/screens/home'
+// import Profile from './src/screens/profile';
 import Products from './src/screens/products';
 import ProductDetails from './src/screens/product-detail';
 import BottomTabNavigator from './src/navigation/BottomTabNavigator';
@@ -25,7 +25,7 @@ const Stack = createNativeStackNavigator();
 function App() {
 
   const [isLoggin, setIsLoggin] = useState({
-    value: false, data: {}
+    value: false, data: {}, routeName: ""
   })
   const getDataAuth = async () => {
     try {
@@ -33,12 +33,14 @@ function App() {
       if (value !== null) {
         setIsLoggin({
           value: true,
-          data: JSON.parse(value)
+          data: JSON.parse(value),
+          routeName: "Home"
         })
       } else {
         setIsLoggin({
           value: false,
-          data: {}
+          data: {},
+          routeName: "Auth"
         })
       }
     } catch (err) {
@@ -47,15 +49,15 @@ function App() {
   }
   useEffect(() => {
     getDataAuth()
-  }, [])
+  }, [isLoggin])
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isLoggin.value ?
+        {/* {isLoggin.value ?
           (
             <>
-              <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
+              <Stack.Screen name="Home" component={() => <BottomTabNavigator setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
               <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
               <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
               <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
@@ -69,10 +71,20 @@ function App() {
           :
           (
             <>
-              <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
+              <Stack.Screen name="Auth" component={() => <Auth setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
             </>
           )
-        }
+        } */}
+        <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
+        <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
+        <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
+        <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
+        <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+        <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
+        <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
+        <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
       </Stack.Navigator>
     </NavigationContainer>
   )
