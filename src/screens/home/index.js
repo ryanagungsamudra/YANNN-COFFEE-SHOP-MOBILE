@@ -34,7 +34,7 @@ export default function Home() {
                 setDataProducts(res.data.data)
                 setRefetch(!refetch)
             })
-            .catch((err) => console.log(err.message))
+            .catch((err) => alert(err.message))
     }
 
     useEffect(() => {
@@ -46,72 +46,75 @@ export default function Home() {
         <View style={global.bg} >
             <Navbar />
 
-            <Text style={styles.title}>A good coffee is {'\n'}a good day</Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <Text style={styles.title}>A good coffee is {'\n'}a good day</Text>
 
-            <View style={{ position: 'relative' }}>
-                <Image
-                    source={require('../../images/search.png')}
-                    style={styles.searchIcon} />
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search anything you want"
-                    onChangeText={(search) => setKeyword(search)} />
-            </View>
-            {/* Product Card Start */}
-            <View>
-                <ScrollView style={{ marginTop: 30, marginBottom: 20 }} horizontal showsHorizontalScrollIndicator={false}>
-                    <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('')}>Favorite & Promo</Text>
-                    <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('coffee')}>Coffee</Text>
-                    <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('non coffee')}>Non Coffee</Text>
-                    <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('foods')}>Foods</Text>
-                    <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15, marginRight: 40 }]} onPress={() => setFilter('add-on')}>Add-on</Text>
-                </ScrollView>
-                <Text style={styles.seeMore} onPress={() => { navigation.navigate('Products') }}>View all</Text>
-                <FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    data={dataProducts}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <Pressable
-                                key={index}
-                                style={styles.cardWrap}
-                                onPress={() => {
-                                    navigation.navigate('ProductDetail', item)
-                                }}
-                                android_ripple={{
-                                    color: "#6A4029",
-                                    foreground: true,
-                                    borderless: true,
-                                    radius: 60
-                                }}>
-                                <Image
-                                    source={{
-                                        uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                <View style={{ position: 'relative' }}>
+                    <Image
+                        source={require('../../images/search.png')}
+                        style={styles.searchIcon} />
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search anything you want"
+                        onChangeText={(search) => setKeyword(search)} />
+                </View>
+                {/* Product Card Start */}
+                <View>
+                    <ScrollView style={{ marginTop: 30, marginBottom: 20 }} horizontal showsHorizontalScrollIndicator={false}>
+                        <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('')}>Favorite & Promo</Text>
+                        <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('coffee')}>Coffee</Text>
+                        <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('non coffee')}>Non Coffee</Text>
+                        <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15 }]} onPress={() => setFilter('foods')}>Foods</Text>
+                        <Text style={[styles.breadcumb, { marginBottom: 20, marginTop: 15, marginRight: 40 }]} onPress={() => setFilter('add-on')}>Add-on</Text>
+                    </ScrollView>
+                    <Text style={styles.seeMore} onPress={() => { navigation.navigate('Products') }}>View all</Text>
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={dataProducts}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <Pressable
+                                    key={index}
+                                    style={styles.cardWrap}
+                                    onPress={() => {
+                                        navigation.navigate('ProductDetail', item)
                                     }}
-                                    style={{
-                                        width: "110%",
-                                        height: "110%",
-                                        position: "absolute",
-                                        top: 15,
-                                        zIndex: 2,
-                                        resizeMode: "cover",
-                                        borderWidth: 1,
-                                        borderColor: 'white',
-                                        borderRadius: 100
-                                    }}
-                                />
-                                <View style={styles.card}>
-                                    <Text style={styles.productTitle}>{item.title}</Text>
-                                    <Text style={[styles.productPrice, { marginBottom: 25 }]}>{`IDR ${item.price}`}</Text>
-                                </View>
-                            </Pressable>
-                        )
-                    }}>
-                </FlatList>
-                {/* Jangan gunakan scrolllview ketika berhubungan dengan data apalagi mapping data, gunakan flatlist */}
-            </View>
-            {/* Product Card End */}
+                                    android_ripple={{
+                                        color: "#6A4029",
+                                        foreground: true,
+                                        borderless: true,
+                                        radius: 60
+                                    }}>
+                                    <Image
+                                        source={{
+                                            uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                        }}
+                                        style={{
+                                            width: "110%",
+                                            height: "110%",
+                                            position: "absolute",
+                                            top: 15,
+                                            zIndex: 2,
+                                            resizeMode: "cover",
+                                            borderWidth: 1,
+                                            borderColor: 'white',
+                                            borderRadius: 100
+                                        }}
+                                    />
+                                    <View style={styles.card}>
+                                        <Text style={styles.productTitle}>{item.title}</Text>
+                                        <Text style={[styles.productPrice, { marginBottom: 25 }]}>{`IDR ${item.price}`}</Text>
+                                    </View>
+                                </Pressable>
+                            )
+                        }}>
+                    </FlatList>
+                    {/* Jangan gunakan scrolllview ketika berhubungan dengan data apalagi mapping data, gunakan flatlist */}
+                </View>
+                {/* Product Card End */}
+            </ScrollView>
+
         </View>
     );
 }

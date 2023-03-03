@@ -35,6 +35,16 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#895537'
     },
+    addItem: {
+        backgroundColor: '#FFBA33',
+        borderColor: '#FFBA33',
+        color: '#000',
+        paddingLeft: 94,
+        paddingRight: 94,
+        padding: 20,
+        fontSize: 17,
+        fontWeight: "700"
+    },
     confirmAndCheckout: {
         paddingLeft: 65,
         paddingRight: 65,

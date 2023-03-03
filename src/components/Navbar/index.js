@@ -12,7 +12,7 @@ function Navbar() {
             <Pressable onPress={() => navigation.openDrawer()}>
                 <Image source={require('../../images/hamburgerButton.png')} style={styles.hamburger} />
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('Home')}>
+            <Pressable onPress={() => navigation.navigate('Cart')}>
                 <MaterialCommunityIcons name="cart-outline" color={'black'} size={24} style={styles.cart} />
                 {/* <Image source={require('../../images/shopping-cart.png')} style={styles.cart} /> */}
             </Pressable>

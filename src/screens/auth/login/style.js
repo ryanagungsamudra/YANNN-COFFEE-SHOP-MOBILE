@@ -3,29 +3,22 @@ import { Dimensions, StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     image: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: '#000000',
-        opacity: 0.6,
-        // position: 'relative'
+        opacity: 0.90,
     },
     title: {
-        position: 'absolute',
-        top: 50,
-        left: 22,
+        padding: 30,
         color: '#fff',
         fontSize: 65,
         fontWeight: '700'
     },
     loginForm: {
         width: '90%',
-        position: "absolute",
-        top: 200,
-        left: 20,
+        marginHorizontal: 20,
+        marginTop: 290
     },
     login: {
-        position: 'absolute',
-        bottom: 130,
-        left: 20,
         width: 352,
         height: 70,
         paddingLeft: 155,

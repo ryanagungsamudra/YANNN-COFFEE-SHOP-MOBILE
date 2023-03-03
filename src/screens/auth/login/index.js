@@ -21,58 +21,62 @@ export default function Login() {
                 AsyncStorage.setItem('@userData', JSON.stringify(res.data.data))
                 ToastAndroid.show('Successfully login.', ToastAndroid.SHORT)
                 setTimeout(() => {
-                    navigation.navigate("Home", res.data.data.user.id)
+                    navigation.navigate("Home")
                 }, 500);
             }).catch((err) => {
                 ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT)
-                console.log(err.response)
             })
     }
     return (
         <View style={{ flex: 1 }}>
-            <ImageBackground source={require('../../../images/login_bg.png')} resizeMode="cover" style={styles.image} />
-            <Text style={styles.title}>Login</Text>
+            <ImageBackground source={require('../../../images/login_bg.png')} style={styles.image} >
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Text style={styles.title}>Login</Text>
+                    <View style={styles.loginForm}>
+                        <FormItem
+                            style={{ borderRadius: 10, opacity: 0.85 }}
+                            placeholder='Enter your email adress'
+                            isRequired
+                            keyboardType='email-address'
+                            onChangeText={(text) => setFormLogin({ ...formLogin, email: text })}
+                            asterik
+                            value={formLogin.email}
+                            ref={emailInput}
+                            autoCapitalize='none'
+                        />
+                        <FormItem
+                            style={{ borderRadius: 10, opacity: 0.85 }}
+                            placeholder='Enter your password'
+                            isRequired
+                            onChangeText={(text) => setFormLogin({ ...formLogin, password: text })}
+                            asterik
+                            value={formLogin.password}
+                            ref={passwordInput}
+                            secureTextEntry={true}
+                            autoCapitalize='none'
+                        />
+                        <Text
+                            style={{ color: '#fff', fontWeight: '700', textDecorationLine: "underline", marginTop: -10 }}
+                            onPress={() => { navigation.navigate('ForgotPassword') }}
+                        >
+                            Forgot password?
+                        </Text>
+                    </View>
 
-            <View style={styles.loginForm}>
-                <FormItem
-                    style={{ borderRadius: 10, opacity: 0.85 }}
-                    placeholder='Enter your email adress'
-                    isRequired
-                    keyboardType='email-address'
-                    onChangeText={(text) => setFormLogin({ ...formLogin, email: text })}
-                    asterik
-                    value={formLogin.email}
-                    ref={emailInput}
-                    autoCapitalize='none'
-                />
-                <FormItem
-                    style={{ borderRadius: 10, opacity: 0.85 }}
-                    placeholder='Enter your password'
-                    isRequired
-                    onChangeText={(text) => setFormLogin({ ...formLogin, password: text })}
-                    asterik
-                    value={formLogin.password}
-                    ref={passwordInput}
-                    secureTextEntry={true}
-                    autoCapitalize='none'
-                />
-                <Text
-                    style={{ color: '#fff', fontWeight: '700', textDecorationLine: "underline" }}
-                    onPress={() => { navigation.navigate('ForgotPassword') }}
-                >
-                    Forgot password?
-                </Text>
-            </View>
+                    <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                        <Pressable onPress={handleLogin} >
+                            <Text style={[global.btn_primary, styles.login]}>Login</Text>
+                        </Pressable>
+                        <Pressable style={{ marginTop: 20 }}>
+                            <View style={{ position: 'relative' }}>
+                                <Image source={require('../../../images/google_logo.png')} style={styles.google} />
+                                <Text style={[global.btn_primary, styles.loginGoogle]}>Login with Google</Text>
+                            </View>
+                        </Pressable>
+                    </View>
+                </ScrollView>
+            </ImageBackground>
 
-            <Pressable onPress={handleLogin} >
-                <Text style={[global.btn_primary, styles.login]}>Login</Text>
-            </Pressable>
-            <Pressable>
-                <View style={{ position: 'absolute', bottom: 45, left: 20 }}>
-                    <Image source={require('../../../images/google_logo.png')} style={styles.google} />
-                    <Text style={[global.btn_primary, styles.loginGoogle]}>Login with Google</Text>
-                </View>
-            </Pressable>
         </View>
     );
 }

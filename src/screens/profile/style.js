@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     hero: {
         width: 130,
         height: 130,
+        borderRadius: 100,
+        borderWidth: 1.5,
+        borderColor: '#6A4029'
     },
     edit: {
         width: 35,

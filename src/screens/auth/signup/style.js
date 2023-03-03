@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#000000',
-        opacity: 0.8,
+        opacity: 0.95,
     },
     title: {
         color: 'white',
@@ -13,20 +13,14 @@ const styles = StyleSheet.create({
         lineHeight: 70,
         fontWeight: '700',
         textAlign: 'center',
-        position: 'absolute',
-        top: 50,
-        left: 22,
+        marginTop: 200
     },
     signupForm: {
         width: '90%',
-        position: "absolute",
-        top: 150,
-        left: 20,
+        marginHorizontal: 20,
+        marginTop: 45
     },
     login: {
-        position: 'absolute',
-        bottom: 130,
-        left: 20,
         width: 352,
         height: 70,
         paddingLeft: 120,
