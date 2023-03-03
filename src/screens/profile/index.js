@@ -24,7 +24,9 @@ export default function Profile() {
         getUserById(idUser)
           .then(res => {
             setUserData(res.data.data);
-            setRefetch(!refetch)
+            setTimeout(() => {
+              setRefetch(!refetch)
+            }, 2500);
           })
       }
     } catch (e) {

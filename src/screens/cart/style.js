@@ -10,21 +10,18 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        // elevation: 10,
+        borderWidth: 0.4,
+        borderColor: '#000',
         height: 102,
         width: 315,
         borderRadius: 30,
         marginTop: 15,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        position: 'relative'
     },
     hero: {
         width: 95,
         height: 95,
-        position: 'absolute',
-        top: 15,
-        left: 0
     },
     title: {
         fontWeight: '700',

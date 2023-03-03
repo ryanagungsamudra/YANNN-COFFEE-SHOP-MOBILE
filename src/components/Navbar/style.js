@@ -20,8 +20,22 @@ const styles = StyleSheet.create({
     cart: {
         marginTop: 45,
         width: 22,
-        height: 22
+        height: 22,
+        position: "relative"
     },
+    badge: {
+        position: "absolute",
+        top: -10,
+        right: -12,
+        backgroundColor: 'red',
+        borderRadius: 60,
+        width: 20,
+        height: 20,
+        alignItems: "center"
+    },
+    badgeText: {
+        color: 'white',
+    }
 });
 
 export default styles

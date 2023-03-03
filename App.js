@@ -18,6 +18,8 @@ import History from './src/screens/history';
 import EditProfile from './src/screens/profile-edit';
 import Auth from './src/screens/auth';
 import Chat from './src/screens/communication/chat';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 // Screens end
 
 const Stack = createNativeStackNavigator();
@@ -52,41 +54,43 @@ function App() {
   }, [isLoggin])
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {/* {isLoggin.value ?
-          (
-            <>
-              <Stack.Screen name="Home" component={() => <BottomTabNavigator setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
-              <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
-              <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
-              <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
-              <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
-              <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
-              <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
-              <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
-              <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
-            </>
-          )
-          :
-          (
-            <>
-              <Stack.Screen name="Auth" component={() => <Auth setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
-            </>
-          )
-        } */}
-        <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
-        <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
-        <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
-        <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
-        <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
-        <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
-        <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
-        <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* {isLoggin.value ?
+            (
+              <>
+                <Stack.Screen name="Home" component={() => <BottomTabNavigator setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
+                <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
+                <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
+                <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
+                <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
+                <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+                <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
+                <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
+                <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
+              </>
+            )
+            :
+            (
+              <>
+                <Stack.Screen name="Auth" component={() => <Auth setIsLoggin={setIsLoggin} isLoggin={isLoggin} />} options={{ headerShown: false }} />
+              </>
+            )
+          } */}
+          <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
+          <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
+          <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
+          <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
+          <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+          <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
+          <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
+          <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
 

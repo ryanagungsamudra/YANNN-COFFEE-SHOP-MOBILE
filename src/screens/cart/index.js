@@ -1,88 +1,87 @@
-import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'react-native';
+import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, ToastAndroid } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
 import SelectDropdown from 'react-native-select-dropdown'
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { API_URL } from '@env'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
 
-export default function Cart({ route }) {
+export default function Cart() {
     const navigation = useNavigation()
-    // const { id, title, price, category, productImage } = route.params
-    const [dataCart, setDataCart] = useState([0])
 
-    const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    const [productQuantity, setProductQuantity] = useState(1)
-    // const totalPrice = (parseInt(price) * (productQuantity || 1)) * 1000
+    // REDUX
+    const cart = useSelector((state) => state.cart.cart);
+    // console.log(cart);
+    const dispatch = useDispatch();
+
+    const increaseQuantity = (item) => {
+        dispatch(incrementQuantity(item))
+    }
+    const decreaseQuantity = (item) => {
+        if (item.quantity == 1) {
+            dispatch(removeFromCart(item))
+        } else {
+            dispatch(decrementQuantity(item))
+        }
+    }
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <View style={styles.cardWrap}>
                 <FlatList
+                    style={{ height: '65%' }}
                     showsVerticalScrollIndicator={false}
-                    data={dataCart}
+                    data={cart}
                     renderItem={({ item, index }) => {
+                        // console.log(item, index);
+                        const price = (parseInt(item.price) * item.quantity).toFixed(3)
+                        // console.log(item.price);
                         return (
-                            // <View style={styles.card}>
-                            //     <Image
-                            //         source={{
-                            //             uri: `${API_URL}/uploads/images/${productImage}`,
-                            //         }}
-                            //         style={styles.hero} />
-                            //     <View style={{ marginRight: 0 }}>
-                            //         <Text style={styles.title}>{title}</Text>
-                            //         <Text style={styles.price}>{`IDR ${totalPrice}`}</Text>
-                            //     </View>
-                            //     <SelectDropdown
-                            //         data={quantity}
-                            //         onSelect={(selectedItem, index) => {
-                            //             // console.log(selectedItem, index)
-                            //             setProductQuantity(selectedItem)
-                            //         }}
-                            //         buttonTextAfterSelection={(selectedItem, index) => {
-                            //             // text represented after item is selected
-                            //             // if data array is an array of objects then return selectedItem.property to render after item is selected
-                            //             return selectedItem
-                            //         }}
-                            //         rowTextForSelection={(item, index) => {
-                            //             // text represented for each item in dropdown
-                            //             // if data array is an array of objects then return item.property to represent item in dropdown
-                            //             return item
-                            //         }}
-                            //         dropdownStyle={{ borderRadius: 10, marginTop: -25 }}
-                            //         buttonStyle={{ width: 60, backgroundColor: '#fff', borderWidth: 0.15, borderRadius: 5, marginHorizontal: 10 }}
-                            //         defaultValue={1}
-                            //     />
-                            // </View>
-                            <View style={styles.card}>
-                                <Image source={require('../../images/coldBrew.png')} style={styles.hero} />
-                                <View style={{ marginRight: 0 }}>
-                                    <Text style={styles.title}>Veggie tomato mix</Text>
-                                    <Text style={styles.price}>IDR 34.000</Text>
+                            <View key={index} style={styles.card}>
+                                <View style={{ width: '30%' }}>
+                                    <Image
+                                        source={{
+                                            uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                        }}
+                                        style={styles.hero} />
                                 </View>
-                                <SelectDropdown
-                                    data={quantity}
-                                    onSelect={(selectedItem, index) => {
-                                        // console.log(selectedItem, index)
-                                    }}
-                                    buttonTextAfterSelection={(selectedItem, index) => {
-                                        // text represented after item is selected
-                                        // if data array is an array of objects then return selectedItem.property to render after item is selected
-                                        return selectedItem
-                                    }}
-                                    rowTextForSelection={(item, index) => {
-                                        // text represented for each item in dropdown
-                                        // if data array is an array of objects then return item.property to represent item in dropdown
-                                        return item
-                                    }}
-                                    dropdownStyle={{ borderRadius: 10, marginTop: -25 }}
-                                    buttonStyle={{ width: 60, backgroundColor: '#fff', borderWidth: 0.15, borderRadius: 5, marginHorizontal: 10 }}
-                                    defaultValue={1}
-                                />
+
+                                <View style={{ width: '40%' }}>
+                                    <Text style={styles.title}>{item.title}</Text>
+                                    <Text style={styles.price}>{`IDR ${price}`}</Text>
+                                </View>
+
+                                {/* Quantity prodcut */}
+                                <View style={{ width: '30%', flexDirection: 'row', backgroundColor: '#FFBA33', borderRadius: 10, borderColor: '#895537', borderWidth: 1, justifyContent: 'center', paddingVertical: 6 }}>
+                                    <Pressable onPress={() => decreaseQuantity(item)}>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            -
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            {item.quantity}
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable onPress={() => increaseQuantity(item)}>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            +
+                                        </Text>
+                                    </Pressable>
+                                </View>
                             </View>
                         )
                     }}>
                 </FlatList>
             </View>
+
+            {/* Scroll down if data length > 4 */}
+            {(cart.length > 4) ? (
+                <Text>SCROLL DOWN</Text>
+            ) : (
+                <Text></Text>
+            )}
 
             <Pressable style={{ position: 'absolute', bottom: 120, right: 45 }}>
                 <Text style={[global.btn_primary, styles.addItem]} onPress={() => {
@@ -91,7 +90,11 @@ export default function Cart({ route }) {
             </Pressable>
             <Pressable style={{ position: 'absolute', bottom: 40, right: 45 }}>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
-                    navigation.navigate('DeliveryMethod')
+                    if (cart.length > 0) {
+                        navigation.navigate('DeliveryMethod')
+                    } else {
+                        ToastAndroid.show('Please add product first', ToastAndroid.SHORT)
+                    }
                 }} >Confirm and Checkout</Text>
             </Pressable>
         </View>
