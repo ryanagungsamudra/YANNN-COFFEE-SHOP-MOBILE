@@ -4,14 +4,49 @@ import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawe
 import styles from './style'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { getUserData } from '../../utils/https/auth'
+import { getUserById } from '../../utils/https/auth'
+import { API_URL } from '@env'
 
 export default function CustomDrawer() {
     const navigation = useNavigation()
     const [userData, setUserData] = useState([])
+    const [refetch, setRefetch] = useState(false)
+
     useEffect(() => {
-        getUserData(setUserData)
-    }, [])
+        getUserData()
+    }, [refetch])
+
+    const getUserData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@userData')
+            if (jsonValue != null) {
+                const idUser = ((JSON.parse(jsonValue)).user.id);
+                getUserById(idUser)
+                    .then(res => {
+                        setUserData(res.data.data);
+                        setRefetch(!refetch)
+                    })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const isImg = () => {
+        if (userData.profile_image != null) {
+            return (
+                <Image
+                    source={{
+                        uri: `${API_URL}/uploads/images/${userData.profile_image}`,
+                    }}
+                    style={styles.hero} />
+            )
+        } else {
+            return (
+                <Image source={require('../../images/man.png')} style={styles.hero} />
+            )
+        }
+    }
 
     const handleLogout = async () => {
         try {
@@ -29,12 +64,13 @@ export default function CustomDrawer() {
             {/* Bio start */}
             <View style={styles.containerHero}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: 55, marginBottom: 20, position: 'relative' }}>
-                    <Image source={require('../../images/ava.png')} style={styles.hero} />
+                    {isImg()}
+                    {/* <Image source={require('../../images/ava.png')} style={styles.hero} /> */}
                 </View>
                 <View style={{ flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: -10 }}>
-                    <Text style={styles.name}>Ryan Agung Samudra</Text>
-                    <Text style={styles.email}>ryanagungsamudra67@gmail.com</Text>
-                    <Text style={styles.phone}>082284798890</Text>
+                    <Text style={styles.name}>{userData.name}</Text>
+                    <Text style={styles.email}>{userData.email}</Text>
+                    <Text style={styles.phone}>{userData.mobile_number}</Text>
                 </View>
             </View >
             {/* Bio end */}

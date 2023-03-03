@@ -51,6 +51,7 @@ export default function Products() {
                             <Image
                                 source={{
                                     uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                    // uri: `https://res.cloudinary.com/deagxiwjt/${item.images[0].filename}`,
                                 }}
                                 style={{
                                     width: '100%',

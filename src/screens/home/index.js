@@ -30,7 +30,10 @@ export default function Home() {
     const loadProducts = () => {
         // getProducts(`search=${keyword}&limit=5&sortBy=desc&category=${filter}`)
         url(keyword)
-            .then((res) => setDataProducts(res.data.data))
+            .then((res) => {
+                setDataProducts(res.data.data)
+                setRefetch(!refetch)
+            })
             .catch((err) => console.log(err.message))
     }
 
@@ -93,6 +96,9 @@ export default function Home() {
                                         top: 15,
                                         zIndex: 2,
                                         resizeMode: "cover",
+                                        borderWidth: 1,
+                                        borderColor: 'white',
+                                        borderRadius: 100
                                     }}
                                 />
                                 <View style={styles.card}>

@@ -40,7 +40,7 @@ export default function EditProfile({ navigation }) {
             {/* Bio end */}
 
             {/* Edit profile start */}
-            <SafeAreaView style={{ width: '100%' }}>
+            <ScrollView style={{ width: '100%' }}>
                 <Text style={styles.input}>Name :</Text>
                 <TextInput
                     onChangeText={onChangeName}
@@ -89,7 +89,7 @@ export default function EditProfile({ navigation }) {
                     placeholder="Iskandar Street Block A Number 102"
                 />
                 <View style={{ borderBottomWidth: 0.8, borderBottomColor: '#9F9F9F', marginTop: 10 }} />
-            </SafeAreaView>
+            </ScrollView>
             {/* Edit profile end */}
 
             <Pressable>

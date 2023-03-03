@@ -19,7 +19,6 @@ export const getUserById = async (id) => {
     return await axios({
         url: `${API_URL}/api/users/${id}`,
         method: "GET",
-        data: body,
     })
 }
 
