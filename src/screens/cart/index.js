@@ -11,6 +11,9 @@ export default function Cart() {
     const navigation = useNavigation()
 
     // REDUX
+    var totalPrice = 0
+    const [totalPriceState, setTotalPriceState] = useState('')
+
     const cart = useSelector((state) => state.cart.cart);
     // console.log(cart);
     const dispatch = useDispatch();
@@ -21,20 +24,12 @@ export default function Cart() {
     const decreaseQuantity = (item) => {
         if (item.quantity == 1) {
             dispatch(removeFromCart(item))
+            setTotalPriceState(null)
         } else {
             dispatch(decrementQuantity(item))
         }
     }
 
-    // Total payment
-    // const totalPayment = () => {
-    //     cart.forEach(item => {
-    //         console.log(item);
-    //     });
-    // }
-    // useEffect(() => {
-    //     totalPayment()
-    // }, [])
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <View style={styles.cardWrap}>
@@ -43,7 +38,9 @@ export default function Cart() {
                     showsVerticalScrollIndicator={false}
                     data={cart}
                     renderItem={({ item, index }) => {
-                        // console.log(item, index);
+                        totalPrice += parseInt(item.price) * item.quantity
+                        setTotalPriceState(totalPrice.toFixed(3))
+
                         const price = (parseInt(item.price) * item.quantity).toFixed(3)
                         return (
                             <View key={index} style={styles.card}>
@@ -86,10 +83,15 @@ export default function Cart() {
 
             {/* Scroll down if data length > 4 */}
             {(cart.length > 4) ? (
-                <Text>SCROLL DOWN</Text>
+                <>
+                    <Text>SCROLL DOWN</Text>
+                    <Text>{totalPriceState}</Text>
+                </>
             ) : (
-                <Text></Text>
+                <Text>{totalPriceState}</Text>
             )}
+
+
 
             <Pressable style={{ position: 'absolute', bottom: 120, right: 45 }}>
                 <Text style={[global.btn_primary, styles.addItem]} onPress={() => {
