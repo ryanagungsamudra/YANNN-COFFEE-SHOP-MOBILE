@@ -16,7 +16,7 @@ export default function Auth() {
         try {
             const value = await AsyncStorage.getItem('@userData')
             if (value !== null) {
-                navigation.navigate("Home")
+                navigation.replace("Home")
             }
         } catch (e) {
             // error reading value

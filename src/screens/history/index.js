@@ -4,22 +4,26 @@ import styles from './style'
 import { useState } from 'react';
 
 export default function History({ navigation }) {
-    const [dataHistory, setDataHistory] = useState([0])
+    const [dataHistory, setDataHistory] = useState([])
     return (
-        <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1, marginTop: 40 }]}>
+        <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1, marginTop: 40 }]}>
             <Text style={styles.header}>Order History</Text>
-            {/* {[1, 2, 3, 4, 5].map(() => {
-                return (
-                    <View style={styles.card}>
-                        <Image source={require('../../images/coldBrew.png')} style={styles.hero} />
-                        <View style={{ marginRight: 35 }}>
-                            <Text style={styles.title}>Veggie tomato mix</Text>
-                            <Text style={styles.price}>IDR 34.000</Text>
-                            <Text style={styles.status}>Waiting for delivery [will arrive at 3 PM]</Text>
-                        </View>
-                    </View>
-                )
-            })} */}
+
+            {/* No history background */}
+            {(dataHistory.length < 1) ? (
+                <>
+                    <Image
+                        source={require('../../images/nohistory.png')}
+                        style={{ marginTop: 200, marginRight: 20 }}
+                    />
+                    <Text style={{ marginTop: 25, textAlign: 'center', fontSize: 28, fontWeight: '900' }}>No history yet</Text>
+                    <Text style={{ marginTop: 10, textAlign: 'center', fontSize: 17, fontWeight: '400', opacity: 0.57 }}>Hit the orange button down {'\n'}below to Create an order</Text>
+                </>
+            ) : (
+                <></>
+            )}
+            {/* end */}
+
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={dataHistory}

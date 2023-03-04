@@ -43,7 +43,8 @@ export default function Payment({ route }) {
                     const priceTimesQuantity = (item.price * item.quantity).toFixed(3);
                     return (
                         <View key={index}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20, justifyContent: 'space-around', width: '100%' }}>
+                            <View style={styles.lineBottom} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, justifyContent: 'space-around', width: '100%' }}>
                                 <View style={{ width: '35%' }}>
                                     <Text style={styles.product}>{`${item.quantity} ${item.title}`}</Text>
                                     <Text style={styles.size}>Regular</Text>

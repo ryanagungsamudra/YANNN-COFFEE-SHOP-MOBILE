@@ -7,6 +7,7 @@ import { API_URL } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Swipeable } from 'react-native-gesture-handler'
 
 export default function Cart() {
     const navigation = useNavigation()
@@ -31,8 +32,32 @@ export default function Cart() {
         }
     }
 
+    // Swipe to delete
+    const leftSwipe = () => {
+        return (
+            <View>
+                <Text>DELETE</Text>
+            </View>
+        )
+    }
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
+
+            {/* No order background */}
+            {(cart.length < 1) ? (
+                <>
+                    <Image
+                        source={require('../../images/noorder.png')}
+                        style={{ marginTop: 200, marginRight: 20 }}
+                    />
+                    <Text style={{ marginTop: 25, textAlign: 'center', fontSize: 28, fontWeight: '900' }}>No orders yet</Text>
+                    <Text style={{ marginTop: 10, textAlign: 'center', fontSize: 17, fontWeight: '400', opacity: 0.57 }}>Hit the orange button down {'\n'}below to Create an order</Text>
+                </>
+            ) : (
+                <></>
+            )}
+            {/* end */}
+
             <View style={styles.cardWrap}>
                 <FlatList
                     style={{ height: '65%' }}
@@ -44,39 +69,41 @@ export default function Cart() {
 
                         const price = (parseInt(item.price) * item.quantity).toFixed(3)
                         return (
-                            <View key={index} style={styles.card}>
-                                <View style={{ width: '30%' }}>
-                                    <Image
-                                        source={{
-                                            uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
-                                        }}
-                                        style={styles.hero} />
-                                </View>
+                            <Swipeable renderLeftActions={leftSwipe}>
+                                <View key={index} style={styles.card}>
+                                    <View style={{ width: '30%' }}>
+                                        <Image
+                                            source={{
+                                                uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                            }}
+                                            style={styles.hero} />
+                                    </View>
 
-                                <View style={{ width: '40%' }}>
-                                    <Text style={styles.title}>{item.title}</Text>
-                                    <Text style={styles.price}>{`IDR ${price}`}</Text>
-                                </View>
+                                    <View style={{ width: '40%' }}>
+                                        <Text style={styles.title}>{item.title}</Text>
+                                        <Text style={styles.price}>{`IDR ${price}`}</Text>
+                                    </View>
 
-                                {/* Quantity prodcut */}
-                                <View style={{ width: '30%', flexDirection: 'row', backgroundColor: '#FFBA33', borderRadius: 10, borderColor: '#895537', borderWidth: 1, justifyContent: 'center', paddingVertical: 6 }}>
-                                    <Pressable onPress={() => decreaseQuantity(item)}>
-                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                            -
-                                        </Text>
-                                    </Pressable>
-                                    <Pressable>
-                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                            {item.quantity}
-                                        </Text>
-                                    </Pressable>
-                                    <Pressable onPress={() => increaseQuantity(item)}>
-                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                            +
-                                        </Text>
-                                    </Pressable>
+                                    {/* Quantity prodcut */}
+                                    <View style={{ width: '30%', flexDirection: 'row', backgroundColor: '#FFBA33', borderRadius: 10, borderColor: '#895537', borderWidth: 1, justifyContent: 'center', paddingVertical: 6 }}>
+                                        <Pressable onPress={() => decreaseQuantity(item)}>
+                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                                -
+                                            </Text>
+                                        </Pressable>
+                                        <Pressable>
+                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                                {item.quantity}
+                                            </Text>
+                                        </Pressable>
+                                        <Pressable onPress={() => increaseQuantity(item)}>
+                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                                +
+                                            </Text>
+                                        </Pressable>
+                                    </View>
                                 </View>
-                            </View>
+                            </Swipeable>
                         )
                     }}>
                 </FlatList>

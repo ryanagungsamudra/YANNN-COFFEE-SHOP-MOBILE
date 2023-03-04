@@ -25,20 +25,6 @@ export default function BottomTabNavigator({ isLoggin, setIsLoggin }) {
                     tabBarItemStyle: { paddingLeft: 5 },
                     tabBarStyle: { height: 55 },
                 }} />
-            {/* <Tab.Screen
-                name="Cart"
-                component={Profile}
-                options={{
-                    headerShown: false,
-                    tabBarLabel: '',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="cart-arrow-down" color={color} size={size} />
-                    ),
-                    tabBarActiveTintColor: 'brown',
-                    tabBarIconStyle: { marginTop: 20 },
-                    tabBarStyle: { height: 55 },
-
-                }} /> */}
             <Tab.Screen
                 name="Profile"
                 component={Profile}
@@ -58,13 +44,14 @@ export default function BottomTabNavigator({ isLoggin, setIsLoggin }) {
                 name="Chat"
                 component={Chat}
                 options={{
+                    headerShown: false,
                     tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="chat-processing" color={color} size={size} />
                     ),
                     tabBarActiveTintColor: 'brown',
                     tabBarIconStyle: { marginTop: 20 },
-                    tabBarHideOnKeyboard: true,
+                    // tabBarHideOnKeyboard: true,
                     tabBarItemStyle: { paddingRight: 5 },
                     tabBarStyle: { height: 55 },
                 }}

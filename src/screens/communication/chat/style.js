@@ -10,38 +10,46 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        // elevation: 10,
+        elevation: 10,
         height: 102,
         width: 315,
         borderRadius: 30,
         marginTop: 15,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        position: 'relative'
+        padding: 10
     },
     hero: {
-        width: 95,
-        height: 95,
+        borderRadius: 60,
+        borderWidth: 1.5,
+        borderColor: '#6A4029',
+        width: 60,
+        height: 60
+    },
+    header: {
+        fontWeight: '900',
+        fontSize: 34,
+        marginTop: 60,
+    },
+    searchIcon: {
+        width: 18,
+        height: 18,
         position: 'absolute',
-        top: 15,
-        left: 0
+        top: 46,
+        left: 22,
+        zIndex: 2
     },
-    title: {
-        fontWeight: '700',
-        fontSize: 17
-    },
-    price: {
-        fontWeight: '400',
-        fontSize: 15,
-        color: '#895537'
-    },
-    confirmAndCheckout: {
-        paddingLeft: 65,
-        paddingRight: 65,
-        padding: 20,
+    searchInput: {
+        borderRadius: 15,
+        width: 300,
+        height: 50,
+        marginTop: 30,
+        marginBottom: 20,
+        borderWidth: 0.3,
+        paddingLeft: 52,
+        backgroundColor: '#EFEEEE',
         fontSize: 17,
-        fontWeight: "700"
-    }
+    },
 });
 
 export default styles

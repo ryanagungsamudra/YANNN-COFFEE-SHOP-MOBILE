@@ -7,30 +7,104 @@ import { API_URL } from '@env'
 
 export default function Chat({ route }) {
     const navigation = useNavigation()
+    const [staff, setStaff] = useState([
+        {
+            name: "Cheryn",
+            chat: "What beans do you use for making cold brew?",
+            time: "yesterday",
+            profile_picture: "../../../images/chat/cheryn.png"
+        },
+        {
+            name: "Jason",
+            chat: "What is pinky promise? Is it made from coffee or strawberry?",
+            time: "2 days ago",
+            profile_picture: "../../../images/chat/jason.png"
+        },
+    ])
+
 
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
-            <View style={styles.cardWrap}>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={[0]}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <View style={styles.card}>
-                                {/* <Image
-                                    source={{
-                                        uri: `${API_URL}/uploads/images/${productImage}`,
-                                    }}
-                                    style={styles.hero} />
-                                <View style={{ marginRight: 0 }}>
-                                    <Text style={styles.title}>{title}</Text>
-                                    <Text style={styles.price}>{`IDR ${totalPrice}`}</Text>
-                                </View> */}
-                            </View>
-                        )
-                    }}>
-                </FlatList>
+            <View style={{ justifyContent: 'flex-start', width: '100%' }}>
+                <Text style={styles.header}>Chat</Text>
             </View>
+            <View style={{ marginTop: 35 }}>
+                <Text style={styles.chooseStaff}>Choose a staff you want to talk with</Text>
+            </View>
+            {/* staff start */}
+            <View style={{ flexDirection: 'row', marginTop: 35, justifyContent: 'space-around', width: '100%' }}>
+                <Image
+                    source={require('../../../images/chat/cheryn.png')}
+                    style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 60,
+                        borderWidth: 1.5,
+                        borderColor: '#6A4029'
+                    }} />
+                <Image
+                    source={require('../../../images/chat/lou.png')}
+                    style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 60,
+                        borderWidth: 1.5,
+                        borderColor: '#6A4029'
+                    }} />
+                <Image
+                    source={require('../../../images/chat/jason.png')}
+                    style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 60,
+                        borderWidth: 1.5,
+                        borderColor: '#6A4029'
+                    }} />
+            </View>
+
+            <View style={{ position: 'relative' }}>
+                <Image
+                    source={require('../../../images/search.png')}
+                    style={styles.searchIcon} />
+                <TextInput
+                    style={styles.searchInput}
+                    placeholder="Search Chat" />
+            </View>
+
+            {/* staff end */}
+            <View style={styles.cardWrap}>
+                <View style={styles.card}>
+                    <View style={{ width: '20%' }}>
+                        <Image
+                            source={require('../../../images/chat/cheryn.png')}
+                            style={styles.hero} />
+                    </View>
+                    <View style={{ width: '70%', justifyContent: 'space-around', height: '100%' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center', paddingRight: 10 }}>
+                            <Text style={{ fontSize: 16, fontWeight: '700' }}>{staff[0].name}</Text>
+                            <Text style={{ fontSize: 12, fontWeight: '400', color: '#9A9A9D' }}>{staff[0].time}</Text>
+                        </View>
+                        <Text>{staff[0].chat}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.card}>
+                    <View style={{ width: '20%' }}>
+                        <Image
+                            source={require('../../../images/chat/jason.png')}
+                            style={styles.hero} />
+                    </View>
+                    <View style={{ width: '70%', justifyContent: 'space-around', height: '100%' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center', paddingRight: 10 }}>
+                            <Text style={{ fontSize: 16, fontWeight: '700' }}>{staff[1].name}</Text>
+                            <Text style={{ fontSize: 12, fontWeight: '400', color: '#9A9A9D' }}>{staff[1].time}</Text>
+                        </View>
+                        <Text>{staff[1].chat}</Text>
+                    </View>
+                </View>
+            </View>
+
+            <Text style={{ color: '#9A9A9D', marginTop: 50 }}>You have no conversation left</Text>
         </View>
     )
 }

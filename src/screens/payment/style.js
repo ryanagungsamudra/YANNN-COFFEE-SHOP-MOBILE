@@ -28,6 +28,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#000000',
     },
+    lineBottom: {
+        borderBottomWidth: 0.4,
+        borderBottomColor: '#6A4029',
+        width: '100%',
+        marginTop: 10,
+        marginBottom: 0
+    },
     confirmAndCheckout: {
         marginTop: 25,
         paddingLeft: 122,

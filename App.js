@@ -1,4 +1,5 @@
 // import * as React from 'react';
+import 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -87,7 +88,6 @@ function App() {
           <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
           <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
           <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
-          <Stack.Screen name="Chat" component={Chat} options={{ title: 'Chat' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
