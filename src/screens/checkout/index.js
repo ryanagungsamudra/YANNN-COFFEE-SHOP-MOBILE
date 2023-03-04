@@ -5,9 +5,9 @@ import styles from './style'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function DeliveryMethod() {
+export default function DeliveryMethod({ route }) {
     const navigation = useNavigation()
-    // const { id, title, price, category, productImage, productQuantity, totalPrice } = route.params
+    const { totalPriceState } = route.params
 
     const [radioButtons, setRadioButtons] = useState([
         {
@@ -55,14 +55,14 @@ export default function DeliveryMethod() {
                 <Text style={{ fontSize: 17, fontWeight: '400' }}>Dine in</Text> */}
             </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 35 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 35, justifyContent: 'space-between', width: '100%' }}>
                 <Text style={styles.total}>Total</Text>
-                <Text style={styles.price}>{`IDR 120.000`}</Text>
+                <Text style={styles.price}>{`IDR ${totalPriceState.toFixed(3)}`}</Text>
             </View>
 
             <Pressable>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
-                    navigation.navigate('Payment')
+                    navigation.navigate('Payment', { totalPriceState: totalPriceState })
                 }} >Confirm and Checkout</Text>
             </Pressable>
         </View>

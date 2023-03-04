@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
         color: '#000000',
     },
     total: {
-        fontSize: 17,
-        fontWeight: '400'
+        fontSize: 18,
+        fontWeight: '500'
     },
     price: {
         fontSize: 22,
         fontWeight: '700',
-        marginLeft: 140,
+        // marginLeft: 140,
     },
     confirmAndCheckout: {
         marginTop: 110,

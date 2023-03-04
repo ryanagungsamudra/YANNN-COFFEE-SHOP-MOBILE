@@ -85,7 +85,7 @@ export default function Cart() {
             {totalPriceState ? (
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
                     <Text style={{ fontWeight: '500', fontSize: 18 }}>Total price:</Text>
-                    <Text style={{ fontWeight: '500', fontSize: 15 }}>{totalPriceState}</Text>
+                    <Text style={{ fontWeight: '500', fontSize: 15 }}>{`IDR ${totalPriceState}`}</Text>
                 </View>
             ) : (
                 <></>
@@ -109,7 +109,7 @@ export default function Cart() {
             <Pressable style={{ position: 'absolute', bottom: 25, right: 45 }}>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
                     if (cart.length > 0) {
-                        navigation.navigate('DeliveryMethod')
+                        navigation.navigate('DeliveryMethod', { totalPriceState: parseInt(totalPriceState) })
                     } else {
                         ToastAndroid.show('Please add product first', ToastAndroid.SHORT)
                     }

@@ -15,6 +15,7 @@ export default function EditProfile() {
     const navigation = useNavigation()
     // User Profile Data
     const [userData, setUserData] = useState([])
+    const id = userData.id
     useEffect(() => {
         getUserData()
     }, [])
@@ -55,7 +56,7 @@ export default function EditProfile() {
         mobile_number: '',
         birthdate: '',
         address: '',
-        profile_image: []
+        profile_image: '',
     })
     // radio button 
     const [radioButtons, setRadioButtons] = useState([
@@ -95,7 +96,6 @@ export default function EditProfile() {
         showMode('date');
     };
 
-
     // Handle submit
     const handleSubmit = () => {
         const body = new FormData();
@@ -104,29 +104,24 @@ export default function EditProfile() {
         body.append('mobile_number', editProfileForm.mobile_number);
         body.append('birthdate', date.toDateString());
         body.append('address', editProfileForm.address);
-        // body.append('profile_image', editProfileForm.profile_image);
-        editProfileForm.profile_image.length != 0 && editProfileForm.profile_image.map(({ uri }) => {
-            body.append("profile_image", {
-                uri: editProfileForm.profile_image[0].uri,
-                name: `profile-${Date.now()}.jpg`,
-                type: 'image/jpeg'
-            });
+        body.append("profile_image", {
+            uri: editProfileForm.profile_image,
+            type: `image/jpeg`,
+            name: `profile.jpg`,
         });
-        console.log(body);
-        // patchUserProfile(body, userData.id)
-        //     .then(res => {
-        //         ToastAndroid.show('Update success!', ToastAndroid.SHORT)
-        //         setTimeout(() => {
-        //             navigation.navigate("Profile")
-        //         }, 2000);
-        //     })
-        //     .catch(err => console.log(err))
+        patchUserProfile(body, id)
+            .then(res => {
+                ToastAndroid.show('Update success!', ToastAndroid.SHORT)
+                setTimeout(() => {
+                    navigation.navigate("Profile")
+                }, 500);
+            })
+            .catch(err => console.log(err))
     }
     // User profile form update end 
 
     // Image picker
     const [imagePreview, setImagePreview] = useState(null);
-    // const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -139,7 +134,7 @@ export default function EditProfile() {
         console.log(result);
         if (!result.canceled) {
             setImagePreview(result.assets[0].uri);
-            setEditProfilForm({ ...editProfileForm, images: result.assets });
+            setEditProfilForm({ ...editProfileForm, profile_image: result.assets[0].uri });
         }
     };
     const TakeImage = async () => {
@@ -154,7 +149,7 @@ export default function EditProfile() {
         console.log(result);
         if (!result.canceled) {
             setImagePreview(result.assets[0].uri);
-            setEditProfilForm({ ...editProfileForm, images: result.assets });
+            setEditProfilForm({ ...editProfileForm, profile_image: result.assets[0].uri });
         }
     };
 
@@ -195,6 +190,7 @@ export default function EditProfile() {
                     onChangeText={(text) => setEditProfilForm({ ...editProfileForm, email: text })}
                     placeholder="Enter your email"
                     keyboardType='email-address'
+                    autoCapitalize='none'
                 />
                 <View style={{ borderBottomWidth: 0.8, borderBottomColor: '#9F9F9F', marginTop: 10 }} />
 
