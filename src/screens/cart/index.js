@@ -1,9 +1,8 @@
 import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, ToastAndroid } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
-import SelectDropdown from 'react-native-select-dropdown'
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { API_URL } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
@@ -26,6 +25,16 @@ export default function Cart() {
             dispatch(decrementQuantity(item))
         }
     }
+
+    // Total payment
+    // const totalPayment = () => {
+    //     cart.forEach(item => {
+    //         console.log(item);
+    //     });
+    // }
+    // useEffect(() => {
+    //     totalPayment()
+    // }, [])
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <View style={styles.cardWrap}>
@@ -36,7 +45,6 @@ export default function Cart() {
                     renderItem={({ item, index }) => {
                         // console.log(item, index);
                         const price = (parseInt(item.price) * item.quantity).toFixed(3)
-                        // console.log(item.price);
                         return (
                             <View key={index} style={styles.card}>
                                 <View style={{ width: '30%' }}>

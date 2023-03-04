@@ -32,3 +32,12 @@ export const getUserData = async (setState) => {
         // error reading value
     }
 }
+
+export const patchUserProfile = async (body, id) => {
+    axios.patch(`${API_URL}/api/users/${id}`, body, {
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'multipart/form-data',
+        }
+    })
+}

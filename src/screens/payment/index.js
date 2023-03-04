@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Payment({ route }) {
     const navigation = useNavigation()
-    const { id, title, price, category, productImage, productQuantity, totalPrice } = route.params
+    // const { id, title, price, category, productImage, productQuantity, totalPrice } = route.params
 
     const [isModalVisible, setModalVisible] = useState(false);
     const toggleModal = () => {
@@ -78,7 +78,7 @@ export default function Payment({ route }) {
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 40, justifyContent: 'space-evenly', width: '100%' }}>
                 <Text style={{ fontSize: 20, fontWeight: '700' }}>Total</Text>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '90%' }}>
-                    <Text style={{ fontSize: 20, fontWeight: '700' }}>{`IDR ${totalPrice}`}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '700' }}>{`IDR 132.000`}</Text>
                 </View>
             </View>
             {/* Total end */}
@@ -91,7 +91,7 @@ export default function Payment({ route }) {
             </Pressable>
 
             {/* Modal start */}
-            <Modal isVisible={isModalVisible} animationIn={'zoomIn'} animationOut={'zoomOut'}>
+            {/* <Modal isVisible={isModalVisible} animationIn={'zoomIn'} animationOut={'zoomOut'}>
                 <View style={{
                     // flex: 1,
                     backgroundColor: '#fff',
@@ -113,7 +113,7 @@ export default function Payment({ route }) {
                         <Pressable style={{ backgroundColor: '#04AA6D', paddingHorizontal: 40, paddingVertical: 15, borderRadius: 20, marginLeft: 10, elevation: 3 }} onPress={handlePayment}><Text style={{ color: 'white' }}>YES</Text></Pressable>
                     </View>
                 </View>
-            </Modal>
+            </Modal> */}
             {/* Modal end */}
         </View>
     )

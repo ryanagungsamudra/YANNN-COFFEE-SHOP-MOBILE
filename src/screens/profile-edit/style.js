@@ -11,14 +11,12 @@ const styles = StyleSheet.create({
     hero: {
         width: 130,
         height: 130,
+        borderRadius: 100,
+        borderWidth: 1.5,
+        borderColor: '#6A4029'
     },
-    edit: {
-        width: 35,
-        height: 35,
-        position: 'absolute',
-        bottom: 2,
-        right: 2
-    },
+    choosePhoto: { width: 120, height: 50, textAlign: 'center', backgroundColor: '#895537' },
+    takePhoto: { width: 120, height: 50, textAlign: 'center', backgroundColor: '#FFBA33', color: '#000' },
     header: {
         fontWeight: '900',
         fontSize: 34,

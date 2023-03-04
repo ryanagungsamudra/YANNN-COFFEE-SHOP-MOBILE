@@ -4,6 +4,15 @@
     "slug": "yannn-coffee-native",
     "version": "1.0.0",
     "orientation": "portrait",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Kita Butuh Akses Galeri/kamera kamu buat pilih gambar.",
+          "cameraPermission": "Kita Butuh Akses Galeri/kamera kamu buat pilih gambar."
+        }
+      ]
+    ],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

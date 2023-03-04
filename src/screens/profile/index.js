@@ -51,7 +51,7 @@ export default function Profile() {
   }
   return (
     <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1 }]}>
-      <Text style={styles.header}>My profile</Text>
+      <Text style={[styles.header, { marginBottom: 27 }]}>My profile</Text>
 
       {/* Bio start */}
       <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 20, position: 'relative' }}>
@@ -67,6 +67,7 @@ export default function Profile() {
         <Text style={{ fontSize: 18, fontWeight: '800' }}>{userData.name}</Text>
         <Text style={{ fontSize: 15, fontWeight: '400', opacity: 0.65 }}>{userData.email}</Text>
         <Text style={{ fontSize: 15, fontWeight: '400', opacity: 0.65 }}>{userData.mobile_number}</Text>
+        <Text style={{ fontSize: 15, fontWeight: '400', opacity: 0.65 }}>{userData.birthdate}</Text>
         <Text style={{ fontSize: 15, fontWeight: '400', opacity: 0.65 }}>{userData.address}</Text>
       </View>
       {/* Bio end */}
@@ -88,9 +89,9 @@ export default function Profile() {
         <Image source={require('../../images/rightArrow.png')} />
       </View>
 
-      <Pressable>
+      {/* <Pressable>
         <Text style={[global.btn_primary, styles.saveChange]}>Save Change</Text>
-      </Pressable>
+      </Pressable> */}
     </View>
   )
 }
