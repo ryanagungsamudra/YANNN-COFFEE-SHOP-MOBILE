@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function Cart() {
     const navigation = useNavigation()
@@ -81,24 +82,31 @@ export default function Cart() {
                 </FlatList>
             </View>
 
+            {totalPriceState ? (
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                    <Text style={{ fontWeight: '500', fontSize: 18 }}>Total price:</Text>
+                    <Text style={{ fontWeight: '500', fontSize: 15 }}>{totalPriceState}</Text>
+                </View>
+            ) : (
+                <></>
+            )}
+
             {/* Scroll down if data length > 4 */}
             {(cart.length > 4) ? (
                 <>
-                    <Text>SCROLL DOWN</Text>
-                    <Text>{totalPriceState}</Text>
+                    <Text style={{ fontSize: 14 }}>Swipe Up</Text>
+                    <MaterialCommunityIcons name='gesture-swipe-up' size={30} color='#895537' />
                 </>
             ) : (
-                <Text>{totalPriceState}</Text>
+                <></>
             )}
 
-
-
-            <Pressable style={{ position: 'absolute', bottom: 120, right: 45 }}>
+            <Pressable style={{ position: 'absolute', bottom: 100, right: 45 }}>
                 <Text style={[global.btn_primary, styles.addItem]} onPress={() => {
                     navigation.navigate('Products')
                 }} >Add more item</Text>
             </Pressable>
-            <Pressable style={{ position: 'absolute', bottom: 40, right: 45 }}>
+            <Pressable style={{ position: 'absolute', bottom: 25, right: 45 }}>
                 <Text style={[global.btn_primary, styles.confirmAndCheckout]} onPress={() => {
                     if (cart.length > 0) {
                         navigation.navigate('DeliveryMethod')
