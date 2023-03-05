@@ -17,6 +17,7 @@ import DeliveryMethod from './src/screens/checkout';
 import Payment from './src/screens/payment';
 import History from './src/screens/history';
 import EditProfile from './src/screens/profile-edit';
+import ChatRoom from './src/screens/communication/chatroom';
 import Auth from './src/screens/auth';
 import Chat from './src/screens/communication/chat';
 import { Provider } from 'react-redux';
@@ -81,6 +82,7 @@ function App() {
           } */}
           <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="ChatRoom" component={ChatRoom} options={{ headerShown: false }} />
           <Stack.Screen name="Products" component={Products} options={{ title: 'Products' }} />
           <Stack.Screen name="ProductDetail" component={ProductDetails} options={{ title: 'Product Detail' }} />
           <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />

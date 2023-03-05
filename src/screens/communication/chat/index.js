@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { API_URL } from '@env'
 
-export default function Chat({ route }) {
+export default function Chat() {
     const navigation = useNavigation()
     const [staff, setStaff] = useState([
         {
@@ -73,7 +73,9 @@ export default function Chat({ route }) {
 
             {/* staff end */}
             <View style={styles.cardWrap}>
-                <View style={styles.card}>
+                <Pressable style={styles.card} onPress={() => {
+                    navigation.navigate('ChatRoom')
+                }}>
                     <View style={{ width: '20%' }}>
                         <Image
                             source={require('../../../images/chat/cheryn.png')}
@@ -86,7 +88,7 @@ export default function Chat({ route }) {
                         </View>
                         <Text>{staff[0].chat}</Text>
                     </View>
-                </View>
+                </Pressable>
 
                 <View style={styles.card}>
                     <View style={{ width: '20%' }}>
