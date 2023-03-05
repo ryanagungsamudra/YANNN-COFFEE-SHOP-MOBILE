@@ -1,11 +1,13 @@
-import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, Button } from 'react-native';
+import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, Button, ToastAndroid } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
 import Modal from "react-native-modal";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
+import { postOrder } from '../../utils/https/products';
+import { getUserData } from '../../utils/https/auth';
 
 export default function Payment({ route }) {
     const navigation = useNavigation()
@@ -13,7 +15,6 @@ export default function Payment({ route }) {
 
     // REDUX
     const cart = useSelector((state) => state.cart.cart);
-    // console.log(cart);
 
     // Summary start
     const subtotal = totalPriceState
@@ -25,8 +26,42 @@ export default function Payment({ route }) {
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
+
+    // Handle post order
+    const date = new Date()
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let day = date.getDate();
+    let month = months[date.getMonth()];
+    let year = date.getFullYear()
+    let time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    let currentDate = `${day} ${month} ${year} - ${time}`;
+
+    // Get user data
+    const [userData, setUserData] = useState([])
+    useEffect(() => {
+        getUserData(setUserData)
+    }, [])
+
     const handlePayment = () => {
-        navigation.navigate('History')
+        cart.forEach(item => {
+            const body = {
+                id_user: userData.user.id,
+                title: item.title,
+                price: (item.price * item.quantity).toFixed(3),
+                category: item.category,
+                quantity: item.quantity,
+                delivery: '',
+                time: currentDate,
+                product_image: item.images[0].filename,
+            }
+            postOrder(body)
+                .then(res => {
+                    navigation.navigate('PaymentStatus', { totalPayment: total, tax: tax, total: subtotal, time: currentDate })
+                })
+                .catch(err => {
+                    ToastAndroid.show('Successfully login.', ToastAndroid.SHORT)
+                })
+        })
     }
 
     return (

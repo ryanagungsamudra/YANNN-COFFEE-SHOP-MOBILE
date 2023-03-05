@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     hero: {
         width: 95,
         height: 95,
+        marginTop: 35
     },
     title: {
         fontWeight: '700',

@@ -22,9 +22,7 @@ const styles = StyleSheet.create({
     hero: {
         width: 95,
         height: 95,
-        position: 'absolute',
-        top: 15,
-        left: 10
+        marginTop: 35
     },
     header: {
         fontWeight: '900',
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     },
     status: {
         fontWeight: '400',
-        fontSize: 10,
+        fontSize: 14,
         color: '#6A4029'
     },
     backToHome: {

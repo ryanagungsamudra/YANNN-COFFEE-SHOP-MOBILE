@@ -12,8 +12,6 @@ const global = StyleSheet.create({
     btn_primary: {
         borderWidth: 0.5,
         padding: 15,
-        paddingLeft: 0,
-        paddingRight: 0,
         borderRadius: 20,
         backgroundColor: '#6A4029',
         color: '#F6F6F9',

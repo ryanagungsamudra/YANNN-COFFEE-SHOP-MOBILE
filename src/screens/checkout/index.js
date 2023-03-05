@@ -2,7 +2,7 @@ import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'r
 import RadioGroup from 'react-native-radio-buttons-group';
 import global from '../../styles/global'
 import styles from './style'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 export default function DeliveryMethod({ route }) {
@@ -29,6 +29,7 @@ export default function DeliveryMethod({ route }) {
     function onPressRadioButton(radioButtonsArray) {
         setRadioButtons(radioButtonsArray);
     }
+
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'flex-start', backgroundColor: '#F2F2F2', flex: 1 }]}>
             <Text style={styles.title}>Delivery</Text>

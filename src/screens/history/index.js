@@ -1,14 +1,15 @@
-import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'react-native';
+import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput, ToastAndroid } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getUserData, getUserHistory } from '../../utils/https/auth';
+import { API_URL } from '@env'
 
 export default function History() {
-    const [dataHistory, setDataHistory] = useState([])
     const navigation = useNavigation()
-    const [userData, setUserData] = useState([])
+    const [dataHistory, setDataHistory] = useState([])
     const [refetch, setRefetch] = useState(false)
 
     useEffect(() => {
@@ -20,18 +21,19 @@ export default function History() {
             const jsonValue = await AsyncStorage.getItem('@userData')
             if (jsonValue != null) {
                 const idUser = ((JSON.parse(jsonValue)).user.id);
-                getUserById(idUser)
+                getUserHistory(idUser)
                     .then(res => {
-                        setUserData(res.data.data);
+                        setDataHistory(res.data.data.history)
                         setTimeout(() => {
                             setRefetch(!refetch)
                         }, 2500);
                     })
             }
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            ToastAndroid.show(err)
         }
     }
+
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1, marginTop: 40 }]}>
             <Text style={styles.header}>Order History</Text>
@@ -56,18 +58,22 @@ export default function History() {
                 data={dataHistory}
                 renderItem={({ item, index }) => {
                     return (
-                        <View style={styles.card}>
-                            <Image source={require('../../images/coldBrew.png')} style={styles.hero} />
-                            <View style={{ marginRight: 35 }}>
-                                <Text style={styles.title}>Veggie tomato mix</Text>
-                                <Text style={styles.price}>IDR 34.000</Text>
-                                <Text style={styles.status}>Waiting for delivery [will arrive at 3 PM]</Text>
+                        <View key={index} style={styles.card}>
+                            <View style={{ width: '30%' }}>
+                                <Image source={{
+                                    uri: `${API_URL}/uploads/images/${item.product_image}`,
+                                }} style={styles.hero} />
+                            </View>
+                            <View style={{ width: '70%' }}>
+                                <Text style={styles.title}>{`${item.quantity} ${item.title}`}</Text>
+                                <Text style={styles.price}>{`IDR ${item.price}`}</Text>
+                                <Text style={styles.status}>{item.time}</Text>
                             </View>
                         </View>
                     )
                 }}>
             </FlatList>
-            <Pressable style={{ position: 'absolute', bottom: 40, right: 45 }}>
+            <Pressable style={{ marginTop: 50, marginBottom: 40 }}>
                 <Text style={[global.btn_primary, styles.backToHome]} onPress={() => {
                     navigation.navigate('Home')
                 }} >Back to home</Text>

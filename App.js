@@ -19,7 +19,8 @@ import History from './src/screens/history';
 import EditProfile from './src/screens/profile-edit';
 import ChatRoom from './src/screens/communication/chatroom';
 import Auth from './src/screens/auth';
-import Chat from './src/screens/communication/chat';
+import PaymentStatus from './src/screens/payment/status';
+// import Chat from './src/screens/communication/chat';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 // Screens end
@@ -88,6 +89,7 @@ function App() {
           <Stack.Screen name="Cart" component={Cart} options={{ title: 'Cart' }} />
           <Stack.Screen name="DeliveryMethod" component={DeliveryMethod} options={{ title: 'Checkout' }} />
           <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: '' }} />
+          <Stack.Screen name="PaymentStatus" component={PaymentStatus} options={{ headerShown: false }} />
           <Stack.Screen name="History" component={History} options={{ headerTitle: '', headerShown: false }} />
           <Stack.Screen name="EditProfile" component={EditProfile} options={{ title: 'Edit Profile' }} />
         </Stack.Navigator>

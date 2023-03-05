@@ -41,3 +41,10 @@ export const patchUserProfile = async (body, id) => {
         }
     })
 }
+
+export const getUserHistory = async (id) => {
+    return await axios({
+        url: `${API_URL}/api/order/${id}`,
+        method: "GET",
+    })
+}
