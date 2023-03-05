@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserData, getUserHistory } from '../../utils/https/auth';
 import { API_URL } from '@env'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function History() {
     const navigation = useNavigation()
@@ -73,7 +74,18 @@ export default function History() {
                     )
                 }}>
             </FlatList>
-            <Pressable style={{ marginTop: 50, marginBottom: 40 }}>
+
+            {/* Scroll down if data length > 4 */}
+            {(dataHistory.length > 5) ? (
+                <View style={{ marginTop: 15 }}>
+                    <Text style={{ fontSize: 14 }}>Swipe Up</Text>
+                    <MaterialCommunityIcons name='gesture-swipe-up' size={30} color='#895537' />
+                </View>
+            ) : (
+                <></>
+            )}
+
+            <Pressable style={{ marginTop: 15, marginBottom: 25 }}>
                 <Text style={[global.btn_primary, styles.backToHome]} onPress={() => {
                     navigation.navigate('Home')
                 }} >Back to home</Text>
