@@ -5,7 +5,7 @@ import styles from './style'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserById } from '../../utils/https/auth'
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 
 export default function CustomDrawer() {
     const navigation = useNavigation()
@@ -39,7 +39,7 @@ export default function CustomDrawer() {
             return (
                 <Image
                     source={{
-                        uri: `${API_URL}/uploads/images/${userData.profile_image}`,
+                        uri: `${API_IMG}/${userData.profile_image}`,
                     }}
                     style={styles.hero} />
             )

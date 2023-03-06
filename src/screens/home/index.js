@@ -2,7 +2,8 @@ import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'r
 import global from '../../styles/global'
 import styles from './style'
 import { useEffect, useState } from 'react';
-import { API_URL } from '@env'
+// import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { useNavigation } from '@react-navigation/native';
 import Navbar from '../../components/Navbar';
 import { getProducts } from '../../utils/https/products';
@@ -90,7 +91,7 @@ export default function Home() {
                                     }}>
                                     <Image
                                         source={{
-                                            uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                            uri: `${API_IMG}/${item.images[0].filename}`,
                                         }}
                                         style={{
                                             width: "110%",

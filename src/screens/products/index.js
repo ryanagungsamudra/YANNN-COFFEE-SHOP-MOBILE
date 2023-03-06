@@ -2,7 +2,8 @@ import { Text, View, FlatList, Image, Pressable } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
 import { useEffect, useState } from 'react';
-import { API_URL } from '@env'
+// import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { getProducts } from '../../utils/https/products';
 import { useNavigation } from '@react-navigation/native';
 
@@ -50,7 +51,7 @@ export default function Products() {
                             }}>
                             <Image
                                 source={{
-                                    uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                    uri: `${API_IMG}/${item.images[0].filename}`,
                                     // uri: `https://res.cloudinary.com/deagxiwjt/${item.images[0].filename}`,
                                 }}
                                 style={{
@@ -90,7 +91,7 @@ export default function Products() {
                             }}>
                             <Image
                                 source={{
-                                    uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                    uri: `${API_IMG}/${item.images[0].filename}`,
                                 }}
                                 style={{
                                     width: '100%',

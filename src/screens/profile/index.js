@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserById } from '../../utils/https/auth'
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'react-native';
 import global from '../../styles/global'
 import styles from './style'
@@ -39,7 +39,7 @@ export default function Profile() {
       return (
         <Image
           source={{
-            uri: `${API_URL}/uploads/images/${userData.profile_image}`,
+            uri: `${API_IMG}/${userData.profile_image}`,
           }}
           style={styles.hero} />
       )

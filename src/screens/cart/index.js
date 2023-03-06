@@ -3,7 +3,7 @@ import global from '../../styles/global'
 import styles from './style'
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -74,7 +74,7 @@ export default function Cart() {
                                     <View style={{ width: '30%' }}>
                                         <Image
                                             source={{
-                                                uri: `${API_URL}/uploads/images/${item.images[0].filename}`,
+                                                uri: `${API_IMG}/${item.images[0].filename}`,
                                             }}
                                             style={styles.hero} />
                                     </View>

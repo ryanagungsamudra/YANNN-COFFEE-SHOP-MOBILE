@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserData, getUserHistory } from '../../utils/https/auth';
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function History() {
@@ -62,7 +62,7 @@ export default function History() {
                         <View key={index} style={styles.card}>
                             <View style={{ width: '30%' }}>
                                 <Image source={{
-                                    uri: `${API_URL}/uploads/images/${item.product_image}`,
+                                    uri: `${API_IMG}/${item.product_image}`,
                                 }} style={styles.hero} />
                             </View>
                             <View style={{ width: '70%' }}>

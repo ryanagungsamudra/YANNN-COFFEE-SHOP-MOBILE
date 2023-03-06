@@ -2,7 +2,7 @@ import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'r
 import global from '../../styles/global'
 import styles from './style'
 import { useNavigation } from '@react-navigation/native';
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/cartReducer';
 
@@ -26,7 +26,7 @@ export default function ProductDetails({ route }) {
             </ScrollView> */}
             <Image
                 source={{
-                    uri: `${API_URL}/uploads/images/${productImage}`,
+                    uri: `${API_IMG}/${productImage}`,
                 }}
                 style={styles.hero} />
             <Text style={styles.title}>{title}</Text>

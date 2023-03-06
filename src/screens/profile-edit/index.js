@@ -6,7 +6,7 @@ import styles from './style'
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getUserById, patchUserProfile } from '../../utils/https/auth'
-import { API_URL } from '@env'
+import { API_IMG } from '@env'
 import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Fontisto } from '@expo/vector-icons'
@@ -37,7 +37,7 @@ export default function EditProfile() {
         if (userData.profile_image != null) {
             return (
                 <>
-                    {imagePreview ? <Image source={{ uri: imagePreview }} style={styles.hero} /> : <Image source={{ uri: `${API_URL}/uploads/images/${userData.profile_image}` }} style={styles.hero} />}
+                    {imagePreview ? <Image source={{ uri: imagePreview }} style={styles.hero} /> : <Image source={{ uri: `${API_IMG}/${userData.profile_image}` }} style={styles.hero} />}
                 </>
             )
         } else {
