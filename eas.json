@@ -6,6 +6,10 @@
     "preview": {
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "API_URL": "https://yannn-coffee-shop.herokuapp.com",
+        "API_IMG": "https://res.cloudinary.com/deagxiwjt"
       }
     },
     "preview2": {
