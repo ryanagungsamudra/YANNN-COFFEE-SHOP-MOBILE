@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     },
     title: {
         padding: 30,
+        marginTop: 100,
+        marginHorizontal: 84,
         color: '#fff',
         fontSize: 65,
         fontWeight: '700'
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
     loginForm: {
         width: '90%',
         marginHorizontal: 20,
-        marginTop: 290
+        marginTop: 90
     },
     login: {
         width: 352,

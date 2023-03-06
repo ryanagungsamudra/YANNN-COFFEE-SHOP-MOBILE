@@ -7,7 +7,7 @@ import { API_IMG } from '@env'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../../redux/cartReducer';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { Swipeable } from 'react-native-gesture-handler'
+import Toast from 'react-native-toast-message';
 
 export default function Cart() {
     const navigation = useNavigation()
@@ -32,14 +32,6 @@ export default function Cart() {
         }
     }
 
-    // Swipe to delete
-    const leftSwipe = () => {
-        return (
-            <View>
-                <Text>DELETE</Text>
-            </View>
-        )
-    }
     return (
         <View style={[global.px_container, { display: 'flex', alignItems: 'center', backgroundColor: '#F2F2F2', flex: 1 }]}>
 
@@ -69,41 +61,39 @@ export default function Cart() {
 
                         const price = (parseInt(item.price) * item.quantity).toFixed(3)
                         return (
-                            <Swipeable renderLeftActions={leftSwipe}>
-                                <View key={index} style={styles.card}>
-                                    <View style={{ width: '30%' }}>
-                                        <Image
-                                            source={{
-                                                uri: `${API_IMG}/${item.images[0].filename}`,
-                                            }}
-                                            style={styles.hero} />
-                                    </View>
-
-                                    <View style={{ width: '40%' }}>
-                                        <Text style={styles.title}>{item.title}</Text>
-                                        <Text style={styles.price}>{`IDR ${price}`}</Text>
-                                    </View>
-
-                                    {/* Quantity prodcut */}
-                                    <View style={{ width: '30%', flexDirection: 'row', backgroundColor: '#FFBA33', borderRadius: 10, borderColor: '#895537', borderWidth: 1, justifyContent: 'center', paddingVertical: 6 }}>
-                                        <Pressable onPress={() => decreaseQuantity(item)}>
-                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                                -
-                                            </Text>
-                                        </Pressable>
-                                        <Pressable>
-                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                                {item.quantity}
-                                            </Text>
-                                        </Pressable>
-                                        <Pressable onPress={() => increaseQuantity(item)}>
-                                            <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
-                                                +
-                                            </Text>
-                                        </Pressable>
-                                    </View>
+                            <View key={index} style={styles.card}>
+                                <View style={{ width: '30%' }}>
+                                    <Image
+                                        source={{
+                                            uri: `${API_IMG}/${item.images[0].filename}`,
+                                        }}
+                                        style={styles.hero} />
                                 </View>
-                            </Swipeable>
+
+                                <View style={{ width: '40%' }}>
+                                    <Text style={styles.title}>{item.title}</Text>
+                                    <Text style={styles.price}>{`IDR ${price}`}</Text>
+                                </View>
+
+                                {/* Quantity prodcut */}
+                                <View style={{ width: '30%', flexDirection: 'row', backgroundColor: '#FFBA33', borderRadius: 10, borderColor: '#895537', borderWidth: 1, justifyContent: 'center', paddingVertical: 6 }}>
+                                    <Pressable onPress={() => decreaseQuantity(item)}>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            -
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            {item.quantity}
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable onPress={() => increaseQuantity(item)}>
+                                        <Text style={{ fontSize: 20, color: "#000", paddingHorizontal: 10 }}>
+                                            +
+                                        </Text>
+                                    </Pressable>
+                                </View>
+                            </View>
                         )
                     }}>
                 </FlatList>
@@ -138,10 +128,18 @@ export default function Cart() {
                     if (cart.length > 0) {
                         navigation.navigate('DeliveryMethod', { totalPriceState: parseInt(totalPriceState) })
                     } else {
-                        ToastAndroid.show('Please add product first', ToastAndroid.SHORT)
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Sorry',
+                            text2: 'Please add product first!',
+                            position: 'top',
+                            visibilityTime: 1500,
+                            topOffset: 30,
+                        });
                     }
                 }} >Confirm and Checkout</Text>
             </Pressable>
+            <Toast />
         </View>
     )
 }

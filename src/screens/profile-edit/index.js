@@ -15,12 +15,11 @@ export default function EditProfile() {
     const navigation = useNavigation()
     // User Profile Data
     const [userData, setUserData] = useState([])
-    const [refetch, setRefetch] = useState(false)
     const id = userData.id
 
     useEffect(() => {
         getUserData()
-    }, [refetch])
+    }, [])
     const getUserData = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('@userData')
@@ -29,13 +28,10 @@ export default function EditProfile() {
                 getUserById(idUser)
                     .then(res => {
                         setUserData(res.data.data);
-                        setTimeout(() => {
-                            setRefetch(!refetch)
-                        }, 2000);
                     })
             }
         } catch (e) {
-            console.log(e)
+            // console.log(e)
         }
     }
     const isImg = () => {
