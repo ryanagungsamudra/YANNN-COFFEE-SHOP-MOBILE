@@ -2,12 +2,12 @@ import { Text, View, ScrollView, Image, Pressable, FlatList, TextInput } from 'r
 import global from '../../styles/global'
 import styles from './style'
 import { useEffect, useState } from 'react';
-// import { API_URL } from '@env'
 import { API_IMG } from '@env'
 import { useNavigation } from '@react-navigation/native';
 import Navbar from '../../components/Navbar';
 import { getProducts } from '../../utils/https/products';
 import { getUserData } from '../../utils/https/auth';
+import { StatusBar } from 'expo-status-bar';
 
 export default function Home() {
     const navigation = useNavigation()
@@ -48,6 +48,7 @@ export default function Home() {
     return (
         <View style={global.bg} >
             <Navbar />
+            <StatusBar style="dark" />
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.title}>A good coffee is {'\n'}a good day</Text>

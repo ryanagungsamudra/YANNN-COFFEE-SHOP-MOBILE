@@ -26,7 +26,7 @@ export default function Profile() {
             setUserData(res.data.data);
             setTimeout(() => {
               setRefetch(!refetch)
-            }, 2500);
+            }, 2000);
           })
       }
     } catch (e) {

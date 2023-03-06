@@ -24,7 +24,7 @@ export default function Auth() {
     }
     useEffect(() => {
         getUserData()
-    })
+    }, [])
 
     return (
         <Stack.Navigator id="Auth">

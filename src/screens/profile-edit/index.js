@@ -15,10 +15,12 @@ export default function EditProfile() {
     const navigation = useNavigation()
     // User Profile Data
     const [userData, setUserData] = useState([])
+    const [refetch, setRefetch] = useState(false)
     const id = userData.id
+
     useEffect(() => {
         getUserData()
-    }, [])
+    }, [refetch])
     const getUserData = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('@userData')
@@ -27,6 +29,9 @@ export default function EditProfile() {
                 getUserById(idUser)
                     .then(res => {
                         setUserData(res.data.data);
+                        setTimeout(() => {
+                            setRefetch(!refetch)
+                        }, 2000);
                     })
             }
         } catch (e) {
@@ -128,10 +133,10 @@ export default function EditProfile() {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
-            quality: 1,
+            quality: 0.5,
             selectionLimit: 1
         });
-        console.log(result);
+        // console.log(result);
         if (!result.canceled) {
             setImagePreview(result.assets[0].uri);
             setEditProfilForm({ ...editProfileForm, profile_image: result.assets[0].uri });
@@ -143,10 +148,10 @@ export default function EditProfile() {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
-            quality: 1,
+            quality: 0.5,
             selectionLimit: 1
         });
-        console.log(result);
+        // console.log(result);
         if (!result.canceled) {
             setImagePreview(result.assets[0].uri);
             setEditProfilForm({ ...editProfileForm, profile_image: result.assets[0].uri });

@@ -10,21 +10,25 @@
       "env": {
         "API_URL": "https://yannn-coffee-shop.herokuapp.com",
         "API_IMG": "https://res.cloudinary.com/deagxiwjt"
-      }
+      },
+      "channel": "preview"
     },
     "preview2": {
       "android": {
         "gradleCommand": ":app:assembleRelease"
-      }
+      },
+      "channel": "preview2"
     },
     "preview3": {
-      "developmentClient": true
+      "developmentClient": true,
+      "channel": "preview3"
     },
     "production": {
       "env": {
         "API_URL": "https://yannn-coffee-shop.herokuapp.com",
         "API_IMG": "https://res.cloudinary.com/deagxiwjt"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {
