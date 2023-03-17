@@ -1,4 +1,5 @@
 # <h1 align="center">YANNN COFFEE MOBILE</h1>
+This is a frontend part for [api project](https://github.com/ryanagungsamudra/backend-yannn-coffee-shop).
 
  <p align="center">
     <a href="https://drive.google.com/file/d/1SKfoa8qEeTilyXvMpFRS9qi3ErmEOibL/view?usp=sharing">View Demo</a>
