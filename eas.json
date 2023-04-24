@@ -8,7 +8,7 @@
         "buildType": "apk"
       },
       "env": {
-        "API_URL": "https://yannn-coffee-shop.herokuapp.com",
+        "API_URL": "https://yannncoffeeshop.cyclic.app",
         "API_IMG": "https://res.cloudinary.com/deagxiwjt"
       },
       "channel": "preview"
@@ -25,7 +25,7 @@
     },
     "production": {
       "env": {
-        "API_URL": "https://yannn-coffee-shop.herokuapp.com",
+        "API_URL": "https://yannncoffeeshop.cyclic.app",
         "API_IMG": "https://res.cloudinary.com/deagxiwjt"
       },
       "channel": "production"
